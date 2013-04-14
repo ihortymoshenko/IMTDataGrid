@@ -1,0 +1,39 @@
+{
+    "name": "imt/data-grid",
+    "description": "This library provides a simple, powerful and fully customizable tool for generating data-bound grids",
+    "type": "library",
+    "keywords": [
+        "DataGrid",
+        "jQuery",
+        "jqGrid"
+    ],
+    "homepage": "http://github.com/IgorTimoshenko/IMTDataGrid",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Igor Timoshenko",
+            "email": "igor.timoshenko@i.ua",
+            "homepage": "http://igortimoshenko.com"
+        }
+    ],
+    "support": {
+        "email": "igor.timoshenko@i.ua",
+        "issues": "http://github.com/IgorTimoshenko/IMTDataGrid/issues",
+        "wiki": "http://github.com/IgorTimoshenko/IMTDataGrid/wiki",
+        "source": "http://github.com/IgorTimoshenko/IMTDataGrid"
+    },
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/options-resolver": "2.2.*",
+        "symfony/templating": "2.2.*",
+        "doctrine/collections": "v1.0",
+        "doctrine/orm": ">=2.2,<2.4-dev"
+    },
+    "autoload": {
+        "psr-0": {
+            "IMT\\DataGrid": "src/"
+        }
+    },
+    "target-dir": "IMT/DataGrid",
+    "minimum-stability": "dev"
+}
