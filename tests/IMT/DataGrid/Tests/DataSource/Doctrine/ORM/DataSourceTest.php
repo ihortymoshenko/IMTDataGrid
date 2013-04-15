@@ -84,7 +84,7 @@ class DataSourceTest extends \PHPUnit_Framework_TestCase
         
         $dqlPart = $this->queryBuilder->getDQLPart('orderBy');
 
-        $this->assertEquals('id ASC', (string) $dqlPart[0]));
+        $this->assertEquals('id ASC', (string) $dqlPart[0]);
     }
 
     /**
