@@ -46,7 +46,7 @@ class DataSource implements DataSourceInterface
      */
     public function bindRequest(RequestInterface $request)
     {
-        if ($request->isSearch()) {
+        if ($request->isSearch() && $request->getFilters()) {
             $this
                 ->queryBuilder
                 ->where(
