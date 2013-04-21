@@ -25,7 +25,7 @@ interface ColumnInterface
      * @param  string $option The option name
      * @return mixed          The option value
      */
-    public function getOption($option);
+    public function get($option);
 
     /**
      * Checks whether the grid column has the specified option
@@ -33,5 +33,12 @@ interface ColumnInterface
      * @param  string  $option The option name
      * @return boolean         Returns false on failure or true on success
      */
-    public function hasOption($option);
+    public function has($option);
+
+    /**
+     * Converts an object to an array
+     *
+     * @return array
+     */
+    public function toArray();
 }

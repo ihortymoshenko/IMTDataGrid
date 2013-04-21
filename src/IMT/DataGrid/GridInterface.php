@@ -12,7 +12,6 @@
 namespace IMT\DataGrid;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\QueryBuilder;
 
 use IMT\DataGrid\Column\ColumnInterface;
 use IMT\DataGrid\DataSource\DataSourceInterface;

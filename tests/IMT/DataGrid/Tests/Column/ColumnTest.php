@@ -43,25 +43,36 @@ class ColumnTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers IMT\DataGrid\Column\Column::getOption
+     * @covers IMT\DataGrid\Column\Column::get
      */
-    public function testGetOption()
+    public function testGet()
     {
         $column = new Column(array('index' => 'index', 'name' => 'name'));
 
-        $this->assertEquals('index', $column->getOption('index'));
-        $this->assertEquals('name', $column->getOption('name'));
+        $this->assertEquals('index', $column->get('index'));
+        $this->assertEquals('name', $column->get('name'));
     }
 
     /**
-     * @covers IMT\DataGrid\Column\Column::hasOption
+     * @covers IMT\DataGrid\Column\Column::has
      */
-    public function testHasOption()
+    public function testHas()
     {
         $column = new Column(array('index' => 'index', 'name' => 'name'));
 
-        $this->assertFalse($column->hasOption('non-existing option'));
-        $this->assertTrue($column->hasOption('index'));
-        $this->assertTrue($column->hasOption('name'));
+        $this->assertFalse($column->has('non-existing option'));
+        $this->assertTrue($column->has('index'));
+        $this->assertTrue($column->has('name'));
+    }
+
+    /**
+     * @covers IMT\DataGrid\Column\Column::toArray
+     */
+    public function testToArray()
+    {
+        $options = array('index' => 'index', 'name' => 'name');
+        $column  = new Column($options);
+
+        $this->assertEquals($options, $column->toArray());
     }
 }

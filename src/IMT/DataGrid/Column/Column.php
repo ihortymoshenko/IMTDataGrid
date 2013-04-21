@@ -45,7 +45,7 @@ class Column implements ColumnInterface
     /**
      * {@inheritDoc}
      */
-    public function getOption($option)
+    public function get($option)
     {
         return $this->options[$option];
     }
@@ -53,9 +53,17 @@ class Column implements ColumnInterface
     /**
      * {@inheritDoc}
      */
-    public function hasOption($option)
+    public function has($option)
     {
         return array_key_exists($option, $this->options);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function toArray()
+    {
+        return $this->options;
     }
 
     /**

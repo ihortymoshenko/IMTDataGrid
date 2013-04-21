@@ -14,7 +14,6 @@ namespace IMT\DataGrid;
 use Symfony\Component\Templating\EngineInterface;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\QueryBuilder;
 
 use IMT\DataGrid\Column\ColumnInterface;
 use IMT\DataGrid\DataSource\DataSourceInterface;
@@ -75,7 +74,7 @@ class Grid implements GridInterface
      */
     public function addColumn(ColumnInterface $column)
     {
-        $this->columns->set($column->getOption('index'), $column);
+        $this->columns->set($column->get('index'), $column);
 
         return $this;
     }
@@ -137,9 +136,9 @@ class Grid implements GridInterface
                  */
                 $column = $this->columns->get($id);
 
-                if ($column->hasOption('template')) {
+                if ($column->has('template')) {
                     $row = $this->templating->render(
-                        $column->getOption('template'),
+                        $column->get('template'),
                         array(
                             'column' => $column,
                             'row'    => $row,
