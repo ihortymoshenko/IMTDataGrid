@@ -23,17 +23,17 @@ use IMT\DataGrid\Column\ColumnInterface;
 class View implements ViewInterface
 {
     /**
-     * @see IMT\Jq\GridInterface::$columns
+     * @see IMT\DataGrid\GridInterface::$columns
      */
     protected $columns;
 
     /**
-     * @see IMT\Jq\GridInterface::$options
+     * @see IMT\DataGrid\GridInterface::$options
      */
     protected $options;
 
     /**
-     * @see IMT\Jq\GridInterface::$name
+     * @see IMT\DataGrid\GridInterface::$name
      */
     protected $name;
 
@@ -66,7 +66,7 @@ class View implements ViewInterface
          * @var $column ColumnInterface
          */
         foreach ($this->columns as $column) {
-            $colNames[] = $column->getOption('name');
+            $colNames[] = $column->get('name');
         }
 
         return $colNames;
