@@ -42,11 +42,12 @@ class PageableResult implements PageableResultInterface
      */
     public function getCurrentPage()
     {
-        $delta = $this->getTotalItemsCount()
-            - $this->paginator->getQuery()->getFirstResult();
-        $limit = $this->paginator->getQuery()->getMaxResults();
+        $offset = $this->paginator->getQuery()->getFirstResult();
+        $limit  = $this->paginator->getQuery()->getMaxResults();
 
-        return $delta < 1 || $limit < 1 ? 1 : ceil($delta / $limit);
+        return $this->getTotalItemsCount() < 1 || $limit < 1
+            ? 1
+            : ceil(($offset + $limit) / $limit);
     }
 
     /**

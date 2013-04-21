@@ -35,13 +35,13 @@ class PageableResultTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers IMT\DataGrid\DataSource\Doctrine\ORM\PageableResult::getCurrentPage
      */
-    public function testGetCurrentPageWhenTotalRowsCountEqualsToOffset()
+    public function testGetCurrentPageWhenItemsDoesNotExist()
     {
         $paginator = $this->getPaginatorMock();
         $paginator
             ->expects($this->once())
             ->method('count')
-            ->will($this->returnValue(10));
+            ->will($this->returnValue(0));
         $paginator
             ->expects($this->exactly(2))
             ->method('getQuery')
@@ -130,7 +130,7 @@ class PageableResultTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers IMT\DataGrid\DataSource\Doctrine\ORM\PageableResult::getTotalPagesCount
      */
-    public function testGetTotalPagesCountWhenRowsDoesNotExist()
+    public function testGetTotalPagesCountWhenItemsDoesNotExist()
     {
         $paginator = $this->getPaginatorMock();
         $paginator
