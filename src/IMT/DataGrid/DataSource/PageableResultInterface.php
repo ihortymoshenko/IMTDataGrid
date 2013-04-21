@@ -27,16 +27,16 @@ interface PageableResultInterface extends \IteratorAggregate
     public function getCurrentPage();
 
     /**
+     * Gets the total items count
+     *
+     * @return integer
+     */
+    public function getTotalItemsCount();
+
+    /**
      * Gets the total pages count
      *
      * @return integer
      */
     public function getTotalPagesCount();
-
-    /**
-     * Gets the total rows count
-     *
-     * @return integer
-     */
-    public function getTotalRowsCount();
 }

@@ -112,6 +112,22 @@ class PageableResultTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers IMT\DataGrid\DataSource\Doctrine\ORM\PageableResult::getTotalItemsCount
+     */
+    public function testGetTotalItemsCount()
+    {
+        $paginator = $this->getPaginatorMock();
+        $paginator
+            ->expects($this->once())
+            ->method('count')
+            ->will($this->returnValue(10));
+
+        $pageableResult = new PageableResult($paginator);
+
+        $this->assertEquals(10, $pageableResult->getTotalItemsCount());
+    }
+
+    /**
      * @covers IMT\DataGrid\DataSource\Doctrine\ORM\PageableResult::getTotalPagesCount
      */
     public function testGetTotalPagesCountWhenRowsDoesNotExist()
@@ -169,22 +185,6 @@ class PageableResultTest extends \PHPUnit_Framework_TestCase
         $pageableResult = new PageableResult($paginator);
 
         $this->assertEquals(2, $pageableResult->getTotalPagesCount());
-    }
-
-    /**
-     * @covers IMT\DataGrid\DataSource\Doctrine\ORM\PageableResult::getTotalRowsCount
-     */
-    public function testGetTotalRowsCount()
-    {
-        $paginator = $this->getPaginatorMock();
-        $paginator
-            ->expects($this->once())
-            ->method('count')
-            ->will($this->returnValue(10));
-
-        $pageableResult = new PageableResult($paginator);
-
-        $this->assertEquals(10, $pageableResult->getTotalRowsCount());
     }
 
     /**

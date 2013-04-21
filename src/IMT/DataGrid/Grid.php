@@ -124,7 +124,7 @@ class Grid implements GridInterface
 
         $data = array(
             'page'    => $pageableResult->getCurrentPage(),
-            'records' => $pageableResult->getTotalRowsCount(),
+            'records' => $pageableResult->getTotalItemsCount(),
             'rows'    => array(),
             'total'   => $pageableResult->getTotalPagesCount(),
         );

@@ -42,7 +42,7 @@ class PageableResult implements PageableResultInterface
      */
     public function getCurrentPage()
     {
-        $delta = $this->getTotalRowsCount()
+        $delta = $this->getTotalItemsCount()
             - $this->paginator->getQuery()->getFirstResult();
         $limit = $this->paginator->getQuery()->getMaxResults();
 
@@ -60,20 +60,20 @@ class PageableResult implements PageableResultInterface
     /**
      * {@inheritDoc}
      */
-    public function getTotalPagesCount()
+    public function getTotalItemsCount()
     {
-        $limit = $this->paginator->getQuery()->getMaxResults();
-
-        return $this->getTotalRowsCount() < 1 || $limit < 1
-            ? 1
-            : ceil($this->getTotalRowsCount() / $limit);
+        return $this->paginator->count();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getTotalRowsCount()
+    public function getTotalPagesCount()
     {
-        return $this->paginator->count();
+        $limit = $this->paginator->getQuery()->getMaxResults();
+
+        return $this->getTotalItemsCount() < 1 || $limit < 1
+            ? 1
+            : ceil($this->getTotalItemsCount() / $limit);
     }
 }
