@@ -43,9 +43,29 @@ class PageableResultTest extends \PHPUnit_Framework_TestCase
             ->method('count')
             ->will($this->returnValue(10));
         $paginator
-            ->expects($this->once())
+            ->expects($this->exactly(2))
             ->method('getQuery')
-            ->will($this->returnValue($this->getQueryBuilderMock()));
+            ->will($this->returnValue($this->getQueryBuilderMock(10, 10)));
+
+        $pageableResult = new PageableResult($paginator);
+
+        $this->assertEquals(1, $pageableResult->getCurrentPage());
+    }
+
+    /**
+     * @covers IMT\DataGrid\DataSource\Doctrine\ORM\PageableResult::getCurrentPage
+     */
+    public function testGetCurrentPageWhenLimitEqualsToZero()
+    {
+        $paginator = $this->getPaginatorMock();
+        $paginator
+            ->expects($this->once())
+            ->method('count')
+            ->will($this->returnValue(10));
+        $paginator
+            ->expects($this->exactly(2))
+            ->method('getQuery')
+            ->will($this->returnValue($this->getQueryBuilderMock(10, 0)));
 
         $pageableResult = new PageableResult($paginator);
 
@@ -65,7 +85,7 @@ class PageableResultTest extends \PHPUnit_Framework_TestCase
         $paginator
             ->expects($this->exactly(2))
             ->method('getQuery')
-            ->will($this->returnValue($this->getQueryBuilderMock()));
+            ->will($this->returnValue($this->getQueryBuilderMock(10, 10)));
 
         $pageableResult = new PageableResult($paginator);
 
@@ -101,6 +121,30 @@ class PageableResultTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('count')
             ->will($this->returnValue(0));
+        $paginator
+            ->expects($this->once())
+            ->method('getQuery')
+            ->will($this->returnValue($this->getQueryBuilderMock(10, 10)));
+
+        $pageableResult = new PageableResult($paginator);
+
+        $this->assertEquals(1, $pageableResult->getTotalPagesCount());
+    }
+
+    /**
+     * @covers IMT\DataGrid\DataSource\Doctrine\ORM\PageableResult::getTotalPagesCount
+     */
+    public function testGetTotalPagesCountWhenLimitEqualsToZero()
+    {
+        $paginator = $this->getPaginatorMock();
+        $paginator
+            ->expects($this->once())
+            ->method('count')
+            ->will($this->returnValue(0));
+        $paginator
+            ->expects($this->once())
+            ->method('getQuery')
+            ->will($this->returnValue($this->getQueryBuilderMock(10, 0)));
 
         $pageableResult = new PageableResult($paginator);
 
@@ -120,7 +164,7 @@ class PageableResultTest extends \PHPUnit_Framework_TestCase
         $paginator
             ->expects($this->once())
             ->method('getQuery')
-            ->will($this->returnValue($this->getQueryBuilderMock()));
+            ->will($this->returnValue($this->getQueryBuilderMock(10, 10)));
 
         $pageableResult = new PageableResult($paginator);
 
@@ -155,9 +199,11 @@ class PageableResultTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param  integer                                  $firstResult
+     * @param  integer                                  $maxResults
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
-    private function getQueryBuilderMock()
+    private function getQueryBuilderMock($firstResult, $maxResults)
     {
         $queryBuilder = $this
             ->getMockBuilder('Doctrine\ORM\QueryBuilder')
@@ -166,11 +212,11 @@ class PageableResultTest extends \PHPUnit_Framework_TestCase
         $queryBuilder
             ->expects($this->any())
             ->method('getFirstResult')
-            ->will($this->returnValue(10));
+            ->will($this->returnValue($firstResult));
         $queryBuilder
             ->expects($this->any())
             ->method('getMaxResults')
-            ->will($this->returnValue(10));
+            ->will($this->returnValue($maxResults));
 
         return $queryBuilder;
     }
