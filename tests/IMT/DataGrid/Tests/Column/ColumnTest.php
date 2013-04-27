@@ -12,6 +12,7 @@
 namespace IMT\DataGrid\Tests\Column;
 
 use IMT\DataGrid\Column\Column;
+use IMT\DataGrid\Column\ColumnInterface;
 
 /**
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
@@ -21,27 +22,14 @@ class ColumnTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers IMT\DataGrid\Column\Column::__construct
      */
-    public function testConstructedWithoutRequiredOptionIndex()
+    public function testConstructedWithoutRequiredOptions()
     {
         $this
             ->setExpectedException(
                 'IMT\DataGrid\Exception\InvalidOptionsException'
             );
 
-        new Column(array('name' => 'name'));
-    }
-
-    /**
-     * @covers IMT\DataGrid\Column\Column::__construct
-     */
-    public function testConstructedWithoutRequiredOptionName()
-    {
-        $this
-            ->setExpectedException(
-                'IMT\DataGrid\Exception\InvalidOptionsException'
-            );
-
-        new Column(array('index' => 'index'));
+        new Column(array());
     }
 
     /**
@@ -49,9 +37,10 @@ class ColumnTest extends \PHPUnit_Framework_TestCase
      */
     public function testGet()
     {
-        $column = new Column(array('index' => 'index', 'name' => 'name'));
+        $column = $this->getColumn();
 
         $this->assertEquals('index', $column->get('index'));
+        $this->assertEquals('label', $column->get('label'));
         $this->assertEquals('name', $column->get('name'));
     }
 
@@ -60,10 +49,11 @@ class ColumnTest extends \PHPUnit_Framework_TestCase
      */
     public function testHas()
     {
-        $column = new Column(array('index' => 'index', 'name' => 'name'));
+        $column = $this->getColumn();
 
         $this->assertFalse($column->has('non-existing option'));
         $this->assertTrue($column->has('index'));
+        $this->assertTrue($column->has('label'));
         $this->assertTrue($column->has('name'));
     }
 
@@ -72,9 +62,29 @@ class ColumnTest extends \PHPUnit_Framework_TestCase
      */
     public function testToArray()
     {
-        $options = array('index' => 'index', 'name' => 'name');
-        $column  = new Column($options);
+        $column = $this->getColumn();
 
-        $this->assertEquals($options, $column->toArray());
+        $this->assertEquals(
+            array(
+                'index' => 'index',
+                'label' => 'label',
+                'name'  => 'name',
+            ),
+            $column->toArray()
+        );
+    }
+
+    /**
+     * @return ColumnInterface
+     */
+    private function getColumn()
+    {
+        return new Column(
+            array(
+                'index' => 'index',
+                'label' => 'label',
+                'name'  => 'name',
+            )
+        );
     }
 }

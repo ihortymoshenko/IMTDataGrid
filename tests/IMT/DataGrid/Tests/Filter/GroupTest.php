@@ -39,7 +39,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers IMT\DataGrid\Filter\Group::__construct
      */
-    public function testConstructedWithoutRequiredOptionOp()
+    public function testConstructedWithoutRequiredOptions()
     {
         $this
             ->setExpectedException(

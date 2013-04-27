@@ -86,8 +86,16 @@ class Column implements ColumnInterface
             'options',
             new Assert\Collection(
                 array(
-                    'fields' => array(
+                    'fields'           => array(
                         'index' => array(
+                            new Assert\NotBlank(),
+                            new Assert\Type(
+                                array(
+                                    'type' => 'string',
+                                )
+                            ),
+                        ),
+                        'label' => array(
                             new Assert\NotBlank(),
                             new Assert\Type(
                                 array(

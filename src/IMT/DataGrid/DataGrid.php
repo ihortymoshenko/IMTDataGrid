@@ -74,7 +74,7 @@ class DataGrid implements DataGridInterface
      */
     public function addColumn(ColumnInterface $column)
     {
-        $this->columns->set($column->get('index'), $column);
+        $this->columns->set($column->get('name'), $column);
 
         return $this;
     }
@@ -130,14 +130,21 @@ class DataGrid implements DataGridInterface
         );
 
         foreach ($pageableResult as $id => $row) {
-            if ($this->columns->containsKey($id)) {
+            $keys = array_keys(
+                array_intersect_key(
+                    array_flip($this->columns->getKeys()),
+                    $row
+                )
+            );
+
+            foreach ($keys as $key) {
                 /**
                  * @var $column ColumnInterface
                  */
-                $column = $this->columns->get($id);
+                $column = $this->columns->get($key);
 
                 if ($column->has('template')) {
-                    $row = $this->templating->render(
+                    $row[$key] = $this->templating->render(
                         $column->get('template'),
                         array(
                             'column' => $column,
@@ -149,7 +156,7 @@ class DataGrid implements DataGridInterface
 
             $data['rows'][] = array(
                 'id'   => $id,
-                'cell' => $row,
+                'cell' => array_intersect_key($row, array_flip($keys)),
             );
         }
 

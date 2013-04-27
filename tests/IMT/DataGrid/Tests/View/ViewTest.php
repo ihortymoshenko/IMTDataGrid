@@ -52,9 +52,9 @@ class ViewTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(
             array(
-                'name1',
-                'name2',
-                'name3',
+                'label1',
+                'label2',
+                'label3',
             ),
             $this->view->getColNames()
         );
@@ -85,9 +85,27 @@ class ViewTest extends \PHPUnit_Framework_TestCase
     {
         return new ArrayCollection(
             array(
-                new Column(array('index' => 'index1', 'name' => 'name1')),
-                new Column(array('index' => 'index2', 'name' => 'name2')),
-                new Column(array('index' => 'index3', 'name' => 'name3')),
+                new Column(
+                    array(
+                        'index' => 'index1',
+                        'label' => 'label1',
+                        'name'  => 'name1',
+                    )
+                ),
+                new Column(
+                    array(
+                        'index' => 'index2',
+                        'label' => 'label2',
+                        'name'  => 'name2',
+                    )
+                ),
+                new Column(
+                    array(
+                        'index' => 'index3',
+                        'label' => 'label3',
+                        'name'  => 'name3',
+                    )
+                ),
             )
         );
     }

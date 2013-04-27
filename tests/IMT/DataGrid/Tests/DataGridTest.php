@@ -78,12 +78,19 @@ class DataGridTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddAndGetColumns()
     {
-        $column = new Column(array('index' => 'index', 'name' => 'name'));
+        $column = new Column(
+            array(
+                'index' => 'index',
+                'label' => 'label',
+                'name'  => 'name',
+            )
+        );
 
         $returnStatement = $this->dataGrid->addColumn($column);
 
         $this->assertSame($this->dataGrid, $returnStatement);
         $this->assertCount(1, $this->dataGrid->getColumns());
+        $this->assertSame($column, $this->dataGrid->getColumns()->get('name'));
     }
 
     /**

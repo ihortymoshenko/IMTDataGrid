@@ -66,7 +66,7 @@ class View implements ViewInterface
          * @var $column ColumnInterface
          */
         foreach ($this->columns as $column) {
-            $colNames[] = $column->get('name');
+            $colNames[] = $column->get('label');
         }
 
         return $colNames;
