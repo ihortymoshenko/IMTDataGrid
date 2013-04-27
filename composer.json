@@ -24,8 +24,8 @@
     },
     "require": {
         "php": ">=5.3.2",
-        "symfony/options-resolver": ">=2.0",
         "symfony/templating": ">=2.0",
+        "symfony/validator": ">=2.0",
         "doctrine/collections": "v1.0",
         "doctrine/orm": ">=2.2,<2.4-dev"
     },

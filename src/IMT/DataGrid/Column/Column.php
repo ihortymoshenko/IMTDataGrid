@@ -11,8 +11,11 @@
 
 namespace IMT\DataGrid\Column;
 
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Validation;
+
+use IMT\DataGrid\Exception\InvalidOptionsException;
 
 /**
  * This class represents the grid column
@@ -31,15 +34,21 @@ class Column implements ColumnInterface
     /**
      * The constructor method
      *
-     * @param array $options An array of options
+     * @param  array                   $options An array of options
+     * @throws InvalidOptionsException          If invalid options are passed
      */
     public function __construct(array $options)
     {
-        $resolver = new OptionsResolver();
+        $this->options = $options;
 
-        $this->setDefaultOptions($resolver);
+        $violations = Validation::createValidatorBuilder()
+            ->addMethodMapping('loadValidatorMetadata')
+            ->getValidator()
+            ->validate($this);
 
-        $this->options = $resolver->resolve($options);
+        if (count($violations) > 0) {
+            throw new InvalidOptionsException($violations);
+        }
     }
 
     /**
@@ -67,16 +76,34 @@ class Column implements ColumnInterface
     }
 
     /**
-     * Sets the default options
-     *
-     * @param OptionsResolverInterface $resolver
+     * @param ClassMetadata $metadata
      */
-    protected function setDefaultOptions(OptionsResolverInterface $resolver)
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $resolver->setRequired(
-            array(
-                'index',
-                'name',
+        $metadata->addPropertyConstraint(
+            'options',
+            new Assert\Collection(
+                array(
+                    'fields' => array(
+                        'index' => array(
+                            new Assert\NotBlank(),
+                            new Assert\Type(
+                                array(
+                                    'type' => 'string',
+                                )
+                            )
+                        ),
+                        'name'  => array(
+                            new Assert\NotBlank(),
+                            new Assert\Type(
+                                array(
+                                    'type' => 'string',
+                                )
+                            )
+                        ),
+                    ),
+                    'allowExtraFields' => true,
+                )
             )
         );
     }

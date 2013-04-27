@@ -41,9 +41,10 @@ class GroupTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructedWithoutRequiredOptionOp()
     {
-        $this->setExpectedException(
-            'Symfony\Component\OptionsResolver\Exception\MissingOptionsException'
-        );
+        $this
+            ->setExpectedException(
+                'IMT\DataGrid\Exception\InvalidOptionsException'
+            );
 
         new Group(array());
     }
@@ -53,9 +54,10 @@ class GroupTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructedWithInvalidOptionOp()
     {
-        $this->setExpectedException(
-            'Symfony\Component\OptionsResolver\Exception\InvalidOptionsException'
-        );
+        $this
+            ->setExpectedException(
+                'IMT\DataGrid\Exception\InvalidOptionsException'
+            );
 
         new Group(array('groupOp' => 'groupOp'));
     }

@@ -44,9 +44,10 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructedWithoutRequiredOptionData()
     {
-        $this->setExpectedException(
-            'Symfony\Component\OptionsResolver\Exception\MissingOptionsException'
-        );
+        $this
+            ->setExpectedException(
+                'IMT\DataGrid\Exception\InvalidOptionsException'
+            );
 
         new Rule(array('field' => 'field', 'op' => 'bn'));
     }
@@ -56,9 +57,10 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructedWithoutRequiredOptionField()
     {
-        $this->setExpectedException(
-            'Symfony\Component\OptionsResolver\Exception\MissingOptionsException'
-        );
+        $this
+            ->setExpectedException(
+                'IMT\DataGrid\Exception\InvalidOptionsException'
+            );
 
         new Rule(array('data' => 'data', 'op' => 'bn'));
     }
@@ -68,9 +70,10 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructedWithoutRequiredOptionOp()
     {
-        $this->setExpectedException(
-            'Symfony\Component\OptionsResolver\Exception\MissingOptionsException'
-        );
+        $this
+            ->setExpectedException(
+                'IMT\DataGrid\Exception\InvalidOptionsException'
+            );
 
         new Rule(array('field' => 'field', 'data' => 'data'));
     }
@@ -80,9 +83,10 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructedWithInvalidOptionOp()
     {
-        $this->setExpectedException(
-            'Symfony\Component\OptionsResolver\Exception\InvalidOptionsException'
-        );
+        $this
+            ->setExpectedException(
+                'IMT\DataGrid\Exception\InvalidOptionsException'
+            );
 
         new Rule(array('field' => 'field', 'data' => 'data', 'op' => 'op'));
     }

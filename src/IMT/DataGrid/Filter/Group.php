@@ -11,10 +11,13 @@
 
 namespace IMT\DataGrid\Filter;
 
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Validation;
 
 use Doctrine\Common\Collections\ArrayCollection;
+
+use IMT\DataGrid\Exception\InvalidOptionsException;
 
 /**
  * This class represents the grid filter group
@@ -47,15 +50,21 @@ class Group implements GroupInterface
     /**
      * The constructor method
      *
-     * @param array $options An array of options
+     * @param  array                   $options An array of options
+     * @throws InvalidOptionsException          If invalid options are passed
      */
     public function __construct(array $options)
     {
-        $resolver = new OptionsResolver();
+        $this->options = $options;
 
-        $this->setDefaultOptions($resolver);
+        $violations = Validation::createValidatorBuilder()
+            ->addMethodMapping('loadValidatorMetadata')
+            ->getValidator()
+            ->validate($this);
 
-        $this->options = $resolver->resolve($options);
+        if (count($violations) > 0) {
+            throw new InvalidOptionsException($violations);
+        }
 
         $this->groups = new ArrayCollection();
         $this->rules  = new ArrayCollection();
@@ -105,30 +114,30 @@ class Group implements GroupInterface
         return $this->rules;
     }
 
-    /**
-     * Sets the default options
-     *
-     * @param OptionsResolverInterface $resolver
-     */
-    protected function setDefaultOptions(OptionsResolverInterface $resolver)
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $resolver->setRequired(
-            array(
-                'groupOp',
-            )
-        );
-
-        $resolver->setAllowedTypes(
-            array(
-                'groupOp' => array('string'),
-            )
-        );
-
-        $resolver->setAllowedValues(
-            array(
-                'groupOp' => array(
-                    'AND',
-                    'OR',
+        $metadata->addPropertyConstraint(
+            'options',
+            new Assert\Collection(
+                array(
+                    'fields' => array(
+                        'groupOp' => array(
+                            new Assert\NotBlank(),
+                            new Assert\Type(
+                                array(
+                                    'type' => 'string',
+                                )
+                            ),
+                            new Assert\Choice(
+                                array(
+                                    'choices' => array(
+                                        'AND',
+                                        'OR',
+                                    )
+                                )
+                            )
+                        )
+                    ),
                 )
             )
         );

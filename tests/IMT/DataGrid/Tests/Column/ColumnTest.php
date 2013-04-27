@@ -23,9 +23,10 @@ class ColumnTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructedWithoutRequiredOptionIndex()
     {
-        $this->setExpectedException(
-            'Symfony\Component\OptionsResolver\Exception\MissingOptionsException'
-        );
+        $this
+            ->setExpectedException(
+                'IMT\DataGrid\Exception\InvalidOptionsException'
+            );
 
         new Column(array('name' => 'name'));
     }
@@ -35,9 +36,10 @@ class ColumnTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructedWithoutRequiredOptionName()
     {
-        $this->setExpectedException(
-            'Symfony\Component\OptionsResolver\Exception\MissingOptionsException'
-        );
+        $this
+            ->setExpectedException(
+                'IMT\DataGrid\Exception\InvalidOptionsException'
+            );
 
         new Column(array('index' => 'index'));
     }
