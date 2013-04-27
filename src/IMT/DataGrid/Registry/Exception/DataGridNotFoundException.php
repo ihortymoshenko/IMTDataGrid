@@ -12,12 +12,12 @@
 namespace IMT\DataGrid\Registry\Exception;
 
 /**
- * This represents the exception that is thrown when the requested grid was not
- * found
+ * This represents the exception that is thrown when the requested data grid was
+ * not found
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore
  */
-class GridNotFoundException extends \RuntimeException
+class DataGridNotFoundException extends \RuntimeException
 {
 }

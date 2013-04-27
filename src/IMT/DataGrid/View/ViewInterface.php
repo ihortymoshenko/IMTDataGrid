@@ -12,7 +12,7 @@
 namespace IMT\DataGrid\View;
 
 /**
- * The interface for the grid view
+ * The interface for the data grid view
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore
@@ -34,12 +34,12 @@ interface ViewInterface
     public function getColNames();
 
     /**
-     * @see IMT\DataGrid\GridInterface::getOptions()
+     * @see IMT\DataGrid\DataGridInterface::getOptions()
      */
     public function getOptions();
 
     /**
-     * @see IMT\DataGrid\GridInterface::getName()
+     * @see IMT\DataGrid\DataGridInterface::getName()
      */
     public function getName();
 }

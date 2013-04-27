@@ -14,7 +14,7 @@ namespace IMT\DataGrid\DataSource;
 use IMT\DataGrid\HttpFoundation\RequestInterface;
 
 /**
- * The interface for the grid data source
+ * The interface for the data source
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore

@@ -16,24 +16,24 @@ use Doctrine\Common\Collections\ArrayCollection;
 use IMT\DataGrid\Column\ColumnInterface;
 
 /**
- * This class represents the grid view
+ * This class represents the data grid view
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  */
 class View implements ViewInterface
 {
     /**
-     * @see IMT\DataGrid\GridInterface::$columns
+     * @see IMT\DataGrid\DataGridInterface::$columns
      */
     protected $columns;
 
     /**
-     * @see IMT\DataGrid\GridInterface::$options
+     * @see IMT\DataGrid\DataGridInterface::$options
      */
     protected $options;
 
     /**
-     * @see IMT\DataGrid\GridInterface::$name
+     * @see IMT\DataGrid\DataGridInterface::$name
      */
     protected $name;
 

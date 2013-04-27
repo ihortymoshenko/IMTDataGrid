@@ -12,18 +12,18 @@
 namespace IMT\DataGrid\Tests;
 
 use IMT\DataGrid\Column\Column;
-use IMT\DataGrid\Grid;
-use IMT\DataGrid\GridInterface;
+use IMT\DataGrid\DataGrid;
+use IMT\DataGrid\DataGridInterface;
 
 /**
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  */
-class GridTest extends \PHPUnit_Framework_TestCase
+class DataGridTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var GridInterface
+     * @var DataGridInterface
      */
-    private $grid;
+    private $dataGrid;
 
     /**
      * {@inheritDoc}
@@ -35,59 +35,59 @@ class GridTest extends \PHPUnit_Framework_TestCase
         $templating = $this
             ->getMock('Symfony\Component\Templating\EngineInterface');
 
-        $this->grid = new Grid($templating);
+        $this->dataGrid = new DataGrid($templating);
     }
 
     /**
-     * @covers IMT\DataGrid\Grid::__construct
+     * @covers IMT\DataGrid\DataGrid::__construct
      */
     public function testConstructedWithDependencies()
     {
         $this->assertAttributeInstanceOf(
             'Symfony\Component\Templating\EngineInterface',
             'templating',
-            $this->grid
+            $this->dataGrid
         );
     }
 
     /**
-     * @covers IMT\DataGrid\Grid::__construct
-     * @covers IMT\DataGrid\Grid::getColumns
+     * @covers IMT\DataGrid\DataGrid::__construct
+     * @covers IMT\DataGrid\DataGrid::getColumns
      */
     public function testConstructedWithoutColumns()
     {
         $this->assertAttributeInstanceOf(
             'Doctrine\Common\Collections\ArrayCollection',
             'columns',
-            $this->grid
+            $this->dataGrid
         );
-        $this->assertCount(0, $this->grid->getColumns());
+        $this->assertCount(0, $this->dataGrid->getColumns());
     }
 
     /**
-     * @covers IMT\DataGrid\Grid::getOptions
+     * @covers IMT\DataGrid\DataGrid::getOptions
      */
     public function testConstructedWithoutOptions()
     {
-        $this->assertCount(0, $this->grid->getOptions());
+        $this->assertCount(0, $this->dataGrid->getOptions());
     }
 
     /**
-     * @covers IMT\DataGrid\Grid::addColumn
-     * @covers IMT\DataGrid\Grid::getColumns
+     * @covers IMT\DataGrid\DataGrid::addColumn
+     * @covers IMT\DataGrid\DataGrid::getColumns
      */
     public function testAddAndGetColumns()
     {
         $column = new Column(array('index' => 'index', 'name' => 'name'));
 
-        $returnStatement = $this->grid->addColumn($column);
+        $returnStatement = $this->dataGrid->addColumn($column);
 
-        $this->assertSame($this->grid, $returnStatement);
-        $this->assertCount(1, $this->grid->getColumns());
+        $this->assertSame($this->dataGrid, $returnStatement);
+        $this->assertCount(1, $this->dataGrid->getColumns());
     }
 
     /**
-     * @covers IMT\DataGrid\Grid::bindRequest
+     * @covers IMT\DataGrid\DataGrid::bindRequest
      */
     public function testBindRequestWithoutSpecifiedDataSource()
     {
@@ -98,38 +98,38 @@ class GridTest extends \PHPUnit_Framework_TestCase
             'IMT\DataGrid\Exception\DataSourceNotSetException'
         );
 
-        $this->grid->bindRequest($request);
+        $this->dataGrid->bindRequest($request);
     }
 
     /**
-     * @covers IMT\DataGrid\Grid::bindRequest
-     * @covers IMT\DataGrid\Grid::setDataSource
+     * @covers IMT\DataGrid\DataGrid::bindRequest
+     * @covers IMT\DataGrid\DataGrid::setDataSource
      */
     public function testBindRequest()
     {
-        $this->grid->setDataSource($this->getDataSourceMock());
+        $this->dataGrid->setDataSource($this->getDataSourceMock());
 
         $request = $this
             ->getMock('IMT\DataGrid\HttpFoundation\RequestInterface');
 
-        $returnStatement = $this->grid->bindRequest($request);
+        $returnStatement = $this->dataGrid->bindRequest($request);
 
-        $this->assertSame($this->grid, $returnStatement);
+        $this->assertSame($this->dataGrid, $returnStatement);
     }
 
     /**
-     * @covers IMT\DataGrid\Grid::createView
+     * @covers IMT\DataGrid\DataGrid::createView
      */
     public function testCreateView()
     {
         $this->assertInstanceOf(
             'IMT\DataGrid\View\ViewInterface',
-            $this->grid->createView()
+            $this->dataGrid->createView()
         );
     }
 
     /**
-     * @covers IMT\DataGrid\Grid::getData
+     * @covers IMT\DataGrid\DataGrid::getData
      */
     public function testGetDataWithoutSpecifiedDataSource()
     {
@@ -137,43 +137,43 @@ class GridTest extends \PHPUnit_Framework_TestCase
             'IMT\DataGrid\Exception\DataSourceNotSetException'
         );
 
-        $this->grid->getData();
+        $this->dataGrid->getData();
     }
 
     /**
-     * @covers IMT\DataGrid\Grid::setDataSource
+     * @covers IMT\DataGrid\DataGrid::setDataSource
      */
     public function testSetDataSource()
     {
         $returnStatement = $this
-            ->grid
+            ->dataGrid
             ->setDataSource($this->getDataSourceMock());
 
         $this->assertAttributeInstanceOf(
             'IMT\DataGrid\DataSource\DataSourceInterface',
             'dataSource',
-            $this->grid
+            $this->dataGrid
         );
-        $this->assertSame($this->grid, $returnStatement);
+        $this->assertSame($this->dataGrid, $returnStatement);
     }
 
     /**
-     * @covers IMT\DataGrid\Grid::getName
-     * @covers IMT\DataGrid\Grid::setName
+     * @covers IMT\DataGrid\DataGrid::getName
+     * @covers IMT\DataGrid\DataGrid::setName
      */
     public function testSetAndGetName()
     {
         $name = 'Grid';
 
-        $grid = $this->grid->setName($name);
+        $dataGrid = $this->dataGrid->setName($name);
 
-        $this->assertSame($this->grid, $grid);
-        $this->assertEquals($name, $this->grid->getName());
+        $this->assertSame($this->dataGrid, $dataGrid);
+        $this->assertEquals($name, $this->dataGrid->getName());
     }
 
     /**
-     * @covers IMT\DataGrid\Grid::getOptions
-     * @covers IMT\DataGrid\Grid::setOptions
+     * @covers IMT\DataGrid\DataGrid::getOptions
+     * @covers IMT\DataGrid\DataGrid::setOptions
      */
     public function testSetAndGetOptions()
     {
@@ -183,9 +183,9 @@ class GridTest extends \PHPUnit_Framework_TestCase
             'option3' => 'value3',
         );
 
-        $this->grid->setOptions($options);
+        $this->dataGrid->setOptions($options);
 
-        $this->assertEquals($options, $this->grid->getOptions());
+        $this->assertEquals($options, $this->dataGrid->getOptions());
     }
 
     /**

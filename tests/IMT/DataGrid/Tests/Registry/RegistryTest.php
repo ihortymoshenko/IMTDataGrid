@@ -41,13 +41,13 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddGridWithoutAlias()
     {
-        $grid = $this->getGridMock();
+        $dataGrid = $this->getDataGridMock();
 
-        $this->registry->add($grid);
+        $this->registry->add($dataGrid);
 
-        $this->assertSame($grid, $this->registry->get('name'));
+        $this->assertSame($dataGrid, $this->registry->get('name'));
         $this->setExpectedException(
-            'IMT\DataGrid\Registry\Exception\GridNotFoundException'
+            'IMT\DataGrid\Registry\Exception\DataGridNotFoundException'
         );
 
         $this->registry->get('alias');
@@ -59,13 +59,13 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddGridWithAlias()
     {
-        $grid = $this->getGridMock();
+        $dataGrid = $this->getDataGridMock();
 
-        $this->registry->add($grid, 'alias');
+        $this->registry->add($dataGrid, 'alias');
 
-        $this->assertSame($grid, $this->registry->get('alias'));
+        $this->assertSame($dataGrid, $this->registry->get('alias'));
         $this->setExpectedException(
-            'IMT\DataGrid\Registry\Exception\GridNotFoundException'
+            'IMT\DataGrid\Registry\Exception\DataGridNotFoundException'
         );
 
         $this->registry->get('name');
@@ -74,14 +74,14 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
     /**
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
-    private function getGridMock()
+    private function getDataGridMock()
     {
-        $grid = $this->getMock('IMT\DataGrid\GridInterface');
-        $grid
+        $dataGrid = $this->getMock('IMT\DataGrid\DataGridInterface');
+        $dataGrid
             ->expects($this->any())
             ->method('getName')
             ->will($this->returnValue('name'));
 
-        return $grid;
+        return $dataGrid;
     }
 }

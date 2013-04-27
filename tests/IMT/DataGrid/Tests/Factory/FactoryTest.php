@@ -59,7 +59,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
     public function testCreate()
     {
         $this->assertInstanceOf(
-            'IMT\DataGrid\GridInterface',
+            'IMT\DataGrid\DataGridInterface',
             $this->factory->create()
         );
     }
@@ -69,19 +69,19 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateNamed()
     {
-        $grid = $this->getMock('IMT\DataGrid\GridInterface');
+        $dataGrid = $this->getMock('IMT\DataGrid\DataGridInterface');
 
         $registry = $this->getRegistryMock();
         $registry
             ->expects($this->once())
             ->method('get')
             ->with($this->equalTo('name'))
-            ->will($this->returnValue($grid));
+            ->will($this->returnValue($dataGrid));
 
         $factory = new Factory($registry, $this->getTemplatingMock());
 
         $this->assertInstanceOf(
-            'IMT\DataGrid\GridInterface',
+            'IMT\DataGrid\DataGridInterface',
             $factory->createNamed('name')
         );
     }

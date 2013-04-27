@@ -12,7 +12,7 @@
 namespace IMT\DataGrid\HttpFoundation;
 
 /**
- * The interface for the grid request
+ * The interface for the data grid request
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore

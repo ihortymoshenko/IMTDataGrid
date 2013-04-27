@@ -12,7 +12,7 @@
 namespace IMT\DataGrid\DataSource;
 
 /**
- * The interface for the grid pageable result
+ * The interface for the pageable result
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore

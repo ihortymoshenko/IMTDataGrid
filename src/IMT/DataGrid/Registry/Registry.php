@@ -11,11 +11,11 @@
 
 namespace IMT\DataGrid\Registry;
 
-use IMT\DataGrid\Registry\Exception\GridNotFoundException;
-use IMT\DataGrid\GridInterface;
+use IMT\DataGrid\Registry\Exception\DataGridNotFoundException;
+use IMT\DataGrid\DataGridInterface;
 
 /**
- * This class represents the grid registry
+ * This class represents the data grid registry
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  */
@@ -26,14 +26,16 @@ class Registry implements RegistryInterface
      *
      * @var array
      */
-    protected $grids = array();
+    protected $dataGrids = array();
 
     /**
      * {@inheritDoc}
      */
-    public function add(GridInterface $grid, $alias = null)
+    public function add(DataGridInterface $dataGrid, $alias = null)
     {
-        $this->grids[!isset($alias) ? $grid->getName() : $alias] = $grid;
+        $name = !isset($alias) ? $dataGrid->getName() : $alias;
+
+        $this->dataGrids[$name] = $dataGrid;
 
         return $this;
     }
@@ -43,12 +45,12 @@ class Registry implements RegistryInterface
      */
     public function get($name)
     {
-        if (!isset($this->grids[$name])) {
-            throw new GridNotFoundException(
-                sprintf('The grid named `%s` was not found.', $name)
+        if (!isset($this->dataGrids[$name])) {
+            throw new DataGridNotFoundException(
+                sprintf('The data grid named `%s` was not found.', $name)
             );
         }
 
-        return $this->grids[$name];
+        return $this->dataGrids[$name];
     }
 }

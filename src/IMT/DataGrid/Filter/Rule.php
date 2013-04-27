@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Validation;
 use IMT\DataGrid\Exception\InvalidOptionsException;
 
 /**
- * This class represents the grid filter rule
+ * This class represents the data grid filter rule
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  */
@@ -75,6 +75,11 @@ class Rule implements RuleInterface
         return $this->options['op'];
     }
 
+    /**
+     * Loads the metadata for the validator
+     *
+     * @param ClassMetadata $metadata
+     */
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint(
@@ -88,7 +93,7 @@ class Rule implements RuleInterface
                                 array(
                                     'type' => 'string',
                                 )
-                            )
+                            ),
                         ),
                         'field' => array(
                             new Assert\NotBlank(),
@@ -96,7 +101,7 @@ class Rule implements RuleInterface
                                 array(
                                     'type' => 'string',
                                 )
-                            )
+                            ),
                         ),
                         'op'    => array(
                             new Assert\NotBlank(),
@@ -124,7 +129,7 @@ class Rule implements RuleInterface
                                         'ni',
                                     )
                                 )
-                            )
+                            ),
                         ),
                     ),
                 )

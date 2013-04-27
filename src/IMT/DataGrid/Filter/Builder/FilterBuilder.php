@@ -15,7 +15,7 @@ use IMT\DataGrid\Filter\Group;
 use IMT\DataGrid\Filter\Rule;
 
 /**
- * This class represents the grid filter builder
+ * This class represents the data grid filter builder
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  */

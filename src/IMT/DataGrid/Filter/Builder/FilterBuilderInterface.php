@@ -14,7 +14,7 @@ namespace IMT\DataGrid\Filter\Builder;
 use IMT\DataGrid\Filter\GroupInterface;
 
 /**
- * The interface for the grid filter builder
+ * The interface for the data grid filter builder
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore
@@ -22,7 +22,7 @@ use IMT\DataGrid\Filter\GroupInterface;
 interface FilterBuilderInterface
 {
     /**
-     * Builds the grid filter by the given array of data
+     * Builds the data grid filter by the given array of data
      *
      * @param  array          $data An array of data
      * @return GroupInterface

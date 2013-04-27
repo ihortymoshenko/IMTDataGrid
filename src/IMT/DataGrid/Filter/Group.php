@@ -20,7 +20,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use IMT\DataGrid\Exception\InvalidOptionsException;
 
 /**
- * This class represents the grid filter group
+ * This class represents the data grid filter group
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  */
@@ -114,6 +114,11 @@ class Group implements GroupInterface
         return $this->rules;
     }
 
+    /**
+     * Loads the metadata for the validator
+     *
+     * @param ClassMetadata $metadata
+     */
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint(
@@ -135,7 +140,7 @@ class Group implements GroupInterface
                                         'OR',
                                     )
                                 )
-                            )
+                            ),
                         )
                     ),
                 )

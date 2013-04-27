@@ -12,8 +12,8 @@
 namespace IMT\DataGrid\Filter\Reflection\Exception;
 
 /**
- * This class represents the exception that is thrown when the requested grid
- * filter reflection was not found
+ * This class represents the exception that is thrown when the requested data
+ * grid filter reflection was not found
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore

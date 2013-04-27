@@ -12,7 +12,7 @@
 namespace IMT\DataGrid\Column;
 
 /**
- * The interface for the grid column
+ * The interface for the data grid column
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore
@@ -28,7 +28,7 @@ interface ColumnInterface
     public function get($option);
 
     /**
-     * Checks whether the grid column has the specified option
+     * Checks whether the data grid column has the specified option
      *
      * @param  string  $option The option name
      * @return boolean         Returns false on failure or true on success

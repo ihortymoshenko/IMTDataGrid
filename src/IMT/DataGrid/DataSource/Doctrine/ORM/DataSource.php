@@ -20,7 +20,7 @@ use IMT\DataGrid\Filter\Reflection\Doctrine\ORM\FilterReflection;
 use IMT\DataGrid\HttpFoundation\RequestInterface;
 
 /**
- * This class represents the grid data source for Doctrine ORM
+ * This class represents the data source for Doctrine ORM
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  */

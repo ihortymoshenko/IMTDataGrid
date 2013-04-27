@@ -12,8 +12,8 @@
 namespace IMT\DataGrid\Exception;
 
 /**
- * This class represents the exception that is thrown when the grid data source
- * is not set
+ * This class represents the exception that is thrown when the data source is
+ * not set
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore
@@ -25,6 +25,6 @@ class DataSourceNotSetException extends \RuntimeException
      */
     public function __construct()
     {
-        parent::__construct('The grid data source is not set.');
+        parent::__construct('The data source is not set.');
     }
 }

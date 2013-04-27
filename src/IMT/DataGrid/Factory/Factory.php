@@ -14,10 +14,10 @@ namespace IMT\DataGrid\Factory;
 use Symfony\Component\Templating\EngineInterface;
 
 use IMT\DataGrid\Registry\RegistryInterface;
-use IMT\DataGrid\Grid;
+use IMT\DataGrid\DataGrid;
 
 /**
- * This class represents the grid factory
+ * This class represents the data grid factory
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  */
@@ -52,7 +52,7 @@ class Factory implements FactoryInterface
      */
     public function create()
     {
-        return new Grid($this->templating);
+        return new DataGrid($this->templating);
     }
 
     /**

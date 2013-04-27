@@ -18,7 +18,7 @@ use IMT\DataGrid\Filter\Reflection\ReflectionInterface;
 use IMT\DataGrid\Filter\RuleInterface;
 
 /**
- * The base class for the grid filter rule reflection for Doctrine ORM
+ * The base class for the data grid filter rule reflection for Doctrine ORM
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  */
@@ -37,7 +37,7 @@ abstract class AbstractRuleReflection implements ReflectionInterface
     protected $parameterKey;
 
     /**
-     * Reflects the given grid filter rule
+     * Reflects the given data grid filter rule
      *
      * @param  RuleInterface $rule
      * @return Expr

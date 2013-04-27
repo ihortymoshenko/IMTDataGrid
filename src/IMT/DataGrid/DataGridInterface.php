@@ -20,18 +20,18 @@ use IMT\DataGrid\HttpFoundation\RequestInterface;
 use IMT\DataGrid\View\ViewInterface;
 
 /**
- * The interface for the grid
+ * The interface for the data grid
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore
  */
-interface GridInterface
+interface DataGridInterface
 {
     /**
      * Adds the given column
      *
-     * @param  ColumnInterface $column
-     * @return GridInterface
+     * @param  ColumnInterface   $column
+     * @return DataGridInterface
      */
     public function addColumn(ColumnInterface $column);
 
@@ -39,14 +39,13 @@ interface GridInterface
      * Binds the given request
      *
      * @param  RequestInterface          $request
-     * @return GridInterface
-     * @throws DataSourceNotSetException          If the grid data source is not
-     *                                            set
+     * @return DataGridInterface
+     * @throws DataSourceNotSetException          If the data source is not set
      */
     public function bindRequest(RequestInterface $request);
 
     /**
-     * Creates the grid view
+     * Creates the data grid view
      *
      * @return ViewInterface
      */
@@ -67,13 +66,13 @@ interface GridInterface
      *                                                    returned. By default,
      *                                                    true
      * @return array
-     * @throws DataSourceNotSetException                  If the grid data
-     *                                                    source is not set
+     * @throws DataSourceNotSetException                  If the data source is
+     *                                                    not set
      */
     public function getData($distinctResults = true);
 
     /**
-     * Gets the grid name
+     * Gets the data grid name
      *
      * @return string
      */
@@ -90,23 +89,23 @@ interface GridInterface
      * Sets the data source
      *
      * @param  DataSourceInterface $dataSource
-     * @return GridInterface
+     * @return DataGridInterface
      */
     public function setDataSource(DataSourceInterface $dataSource);
 
     /**
-     * Sets the grid name
+     * Sets the data grid name
      *
-     * @param  string        $name The grid name
-     * @return GridInterface
+     * @param  string            $name The data grid name
+     * @return DataGridInterface
      */
     public function setName($name);
 
     /**
      * Sets an array of options
      *
-     * @param  array         $options An array of options
-     * @return GridInterface
+     * @param  array             $options An array of options
+     * @return DataGridInterface
      */
     public function setOptions(array $options);
 }

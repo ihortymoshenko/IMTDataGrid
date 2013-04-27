@@ -12,7 +12,7 @@
 namespace IMT\DataGrid\Filter;
 
 /**
- * The interface for the grid filter rule
+ * The interface for the data grid filter rule
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore

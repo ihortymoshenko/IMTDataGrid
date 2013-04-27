@@ -11,10 +11,10 @@
 
 namespace IMT\DataGrid\Factory;
 
-use IMT\DataGrid\GridInterface;
+use IMT\DataGrid\DataGridInterface;
 
 /**
- * The interface for the grid factory
+ * The interface for the data grid factory
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore
@@ -22,19 +22,19 @@ use IMT\DataGrid\GridInterface;
 interface FactoryInterface
 {
     /**
-     * Creates the grid
+     * Creates the data grid
      *
-     * @return GridInterface
+     * @return DataGridInterface
      */
     public function create();
 
     /**
-     * Creates the grid using by the specified name of the service that
-     * represents the grid
+     * Creates the data grid using by the specified name of the service that
+     * represents the data grid
      *
-     * @param  string        $name The name of the service that represents the
-     *                             grid
-     * @return GridInterface
+     * @param  string            $name The name of the service that represents
+     *                                 the data grid
+     * @return DataGridInterface
      */
     public function createNamed($name);
 }

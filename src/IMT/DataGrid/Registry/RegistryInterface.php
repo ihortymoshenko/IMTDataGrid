@@ -11,11 +11,11 @@
 
 namespace IMT\DataGrid\Registry;
 
-use IMT\DataGrid\Registry\Exception\GridNotFoundException;
-use IMT\DataGrid\GridInterface;
+use IMT\DataGrid\Registry\Exception\DataGridNotFoundException;
+use IMT\DataGrid\DataGridInterface;
 
 /**
- * The interface for the grid registry
+ * The interface for the data grid registry
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore
@@ -23,21 +23,22 @@ use IMT\DataGrid\GridInterface;
 interface RegistryInterface
 {
     /**
-     * Adds the given grid
+     * Adds the given data grid
      *
-     * @param  GridInterface     $grid
-     * @param  null|string       $alias The grid alias. If set, will be used as
-     *                                  the grid name
+     * @param  DataGridInterface $dataGrid
+     * @param  null|string       $alias    The data grid alias. If set, will be
+     *                                     used as the data grid name
      * @return RegistryInterface
      */
-    public function add(GridInterface $grid, $alias = null);
+    public function add(DataGridInterface $dataGrid, $alias = null);
 
     /**
-     * Gets the grid by the specified grid name
+     * Gets the data grid by the specified data grid name
      *
-     * @param  string                $name The grid name
-     * @return GridInterface
-     * @throws GridNotFoundException       If the requested grid was not found
+     * @param  string                    $name The data grid name
+     * @return DataGridInterface
+     * @throws DataGridNotFoundException       If the requested data grid was
+     *                                         not found
      */
     public function get($name);
 }

@@ -20,11 +20,11 @@ use IMT\DataGrid\DataSource\DataSourceInterface;
 use IMT\DataGrid\Exception\DataSourceNotSetException;
 
 /**
- * This class represents the grid
+ * This class represents the data grid
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  */
-class Grid implements GridInterface
+class DataGrid implements DataGridInterface
 {
     /**
      * A collection of objects of type ColumnInterface
@@ -39,7 +39,7 @@ class Grid implements GridInterface
     protected $dataSource;
 
     /**
-     * The grid name
+     * The data grid name
      *
      * @var string
      */

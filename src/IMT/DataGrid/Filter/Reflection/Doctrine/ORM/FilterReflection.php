@@ -19,7 +19,7 @@ use IMT\DataGrid\Filter\Reflection\ReflectionInterface;
 use IMT\DataGrid\Filter\GroupInterface;
 
 /**
- * This class represents the grid filter reflection for Doctrine ORM
+ * This class represents the data grid filter reflection for Doctrine ORM
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  */
@@ -44,7 +44,7 @@ class FilterReflection implements ReflectionInterface
      * {@inheritDoc}
      * @param  GroupInterface              $group
      * @return Base
-     * @throws ReflectionNotFoundException        If the grid filter rule
+     * @throws ReflectionNotFoundException        If the data grid filter rule
      *                                            reflection class does not
      *                                            exist
      */
@@ -65,8 +65,8 @@ class FilterReflection implements ReflectionInterface
             if (!class_exists($ruleReflectionClass)) {
                 throw new ReflectionNotFoundException(
                     sprintf(
-                        'The grid filter rule reflection class named `%s` does '
-                        . 'not exist.',
+                        'The data grid filter rule reflection class named `%s` '
+                        . 'does not exist.',
                         $ruleReflectionClass
                     )
                 );

@@ -16,7 +16,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 use IMT\DataGrid\DataSource\PageableResultInterface;
 
 /**
- * This class represents the grid pageable result for Doctrine ORM
+ * This class represents the pageable result for Doctrine ORM
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  */

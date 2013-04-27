@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Validation;
 use IMT\DataGrid\Exception\InvalidOptionsException;
 
 /**
- * This class represents the grid column
+ * This class represents the data grid column
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  */
@@ -76,6 +76,8 @@ class Column implements ColumnInterface
     }
 
     /**
+     * Loads the metadata for the validator
+     *
      * @param ClassMetadata $metadata
      */
     public static function loadValidatorMetadata(ClassMetadata $metadata)
@@ -91,7 +93,7 @@ class Column implements ColumnInterface
                                 array(
                                     'type' => 'string',
                                 )
-                            )
+                            ),
                         ),
                         'name'  => array(
                             new Assert\NotBlank(),
@@ -99,7 +101,7 @@ class Column implements ColumnInterface
                                 array(
                                     'type' => 'string',
                                 )
-                            )
+                            ),
                         ),
                     ),
                     'allowExtraFields' => true,

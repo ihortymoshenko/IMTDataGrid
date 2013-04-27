@@ -12,7 +12,7 @@
 namespace IMT\DataGrid\Filter\Reflection;
 
 /**
- * The interface for the grid filter reflection
+ * The interface for the data grid filter reflection
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore
