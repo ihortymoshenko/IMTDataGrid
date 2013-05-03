@@ -29,11 +29,11 @@ interface FactoryInterface
     public function create();
 
     /**
-     * Creates the data grid using by the specified name of the service that
-     * represents the data grid
+     * Creates the data grid using by the specified service name that represents
+     * the data grid
      *
-     * @param  string            $name The name of the service that represents
-     *                                 the data grid
+     * @param  string            $name The service name that represents the data
+     *                                 grid
      * @return DataGridInterface
      */
     public function createNamed($name);
