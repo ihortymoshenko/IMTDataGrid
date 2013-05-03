@@ -12,7 +12,6 @@
 namespace IMT\DataGrid\Tests\Column;
 
 use IMT\DataGrid\Column\Column;
-use IMT\DataGrid\Column\ColumnInterface;
 
 /**
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
@@ -75,7 +74,7 @@ class ColumnTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return ColumnInterface
+     * @return Column
      */
     private function getColumn()
     {
