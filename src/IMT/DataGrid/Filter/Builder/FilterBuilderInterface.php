@@ -11,7 +11,7 @@
 
 namespace IMT\DataGrid\Filter\Builder;
 
-use IMT\DataGrid\Filter\GroupInterface;
+use IMT\DataGrid\Filter\FilterInterface;
 
 /**
  * The interface for the data grid filter builder
@@ -24,8 +24,8 @@ interface FilterBuilderInterface
     /**
      * Builds the data grid filter by the given array of data
      *
-     * @param  array          $data An array of data
-     * @return GroupInterface
+     * @param  array           $data An array of data
+     * @return FilterInterface
      */
     public function build(array $data);
 }

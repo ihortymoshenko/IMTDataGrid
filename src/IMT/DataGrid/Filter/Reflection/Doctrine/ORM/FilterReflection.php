@@ -16,7 +16,7 @@ use Doctrine\ORM\QueryBuilder;
 
 use IMT\DataGrid\Filter\Reflection\Exception\ReflectionNotFoundException;
 use IMT\DataGrid\Filter\Reflection\ReflectionInterface;
-use IMT\DataGrid\Filter\GroupInterface;
+use IMT\DataGrid\Filter\FilterInterface;
 
 /**
  * This class represents the data grid filter reflection for Doctrine ORM
@@ -42,20 +42,20 @@ class FilterReflection implements ReflectionInterface
 
     /**
      * {@inheritDoc}
-     * @param  GroupInterface              $group
+     * @param  FilterInterface              $filter
      * @return Base
-     * @throws ReflectionNotFoundException        If the data grid filter rule
-     *                                            reflection class does not
-     *                                            exist
+     * @throws ReflectionNotFoundException          If the data grid filter rule
+     *                                              reflection class does not
+     *                                              exist
      */
-    public function reflect(GroupInterface $group = null)
+    public function reflect(FilterInterface $filter = null)
     {
         $exprParts = array();
 
         /**
          * @var $rule \IMT\DataGrid\Filter\RuleInterface
          */
-        foreach ($group->getRules() as $rule) {
+        foreach ($filter->getRules() as $rule) {
             $ruleReflectionClass = sprintf(
                 '%s\Rule\%sRuleReflection',
                 __NAMESPACE__,
@@ -80,7 +80,7 @@ class FilterReflection implements ReflectionInterface
             $exprParts[] = $ruleReflection->reflect($rule);
         }
 
-        $exprOperation = mb_strtolower($group->getGroupOp()) . 'X';
+        $exprOperation = mb_strtolower($filter->getOperator()) . 'X';
         $expr = call_user_func_array(
             array($this->queryBuilder->expr(), $exprOperation),
             $exprParts
@@ -88,8 +88,8 @@ class FilterReflection implements ReflectionInterface
 
         $nestedExprParts = array();
 
-        foreach ($group->getGroups() as $nestedGroup) {
-            $nestedExprParts[] = $this->reflect($nestedGroup);
+        foreach ($filter->getFilters() as $nestedFilter) {
+            $nestedExprParts[] = $this->reflect($nestedFilter);
         }
 
         if (count($nestedExprParts) == 0) {

@@ -13,18 +13,18 @@ namespace IMT\DataGrid\Tests\Filter;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-use IMT\DataGrid\Filter\Group;
+use IMT\DataGrid\Filter\Filter;
 use IMT\DataGrid\Filter\Rule;
 
 /**
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  */
-class GroupTest extends \PHPUnit_Framework_TestCase
+class FilterTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var Group
+     * @var Filter
      */
-    private $group;
+    private $filter;
 
     /**
      * {@inheritDoc}
@@ -33,11 +33,11 @@ class GroupTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->group = new Group(array('groupOp' => 'AND'));
+        $this->filter = new Filter(array('groupOp' => 'AND'));
     }
 
     /**
-     * @covers IMT\DataGrid\Filter\Group::__construct
+     * @covers IMT\DataGrid\Filter\Filter::__construct
      */
     public function testConstructedWithoutRequiredOptions()
     {
@@ -46,11 +46,11 @@ class GroupTest extends \PHPUnit_Framework_TestCase
                 'IMT\DataGrid\Exception\InvalidOptionsException'
             );
 
-        new Group(array());
+        new Filter(array());
     }
 
     /**
-     * @covers IMT\DataGrid\Filter\Group::__construct
+     * @covers IMT\DataGrid\Filter\Filter::__construct
      */
     public function testConstructedWithInvalidOptionOp()
     {
@@ -59,62 +59,62 @@ class GroupTest extends \PHPUnit_Framework_TestCase
                 'IMT\DataGrid\Exception\InvalidOptionsException'
             );
 
-        new Group(array('groupOp' => 'groupOp'));
+        new Filter(array('groupOp' => 'groupOp'));
     }
 
     /**
-     * @covers IMT\DataGrid\Filter\Group::__construct
-     * @covers IMT\DataGrid\Filter\Group::getGroups
+     * @covers IMT\DataGrid\Filter\Filter::__construct
+     * @covers IMT\DataGrid\Filter\Filter::getFilters
      */
-    public function testConstructedWithoutGroups()
+    public function testConstructedWithoutFilters()
     {
         $this->assertInstanceOf(
             'Doctrine\Common\Collections\ArrayCollection',
-            $this->group->getGroups()
+            $this->filter->getFilters()
         );
-        $this->assertCount(0, $this->group->getGroups());
+        $this->assertCount(0, $this->filter->getFilters());
     }
 
     /**
-     * @covers IMT\DataGrid\Filter\Group::__construct
-     * @covers IMT\DataGrid\Filter\Group::getRules
+     * @covers IMT\DataGrid\Filter\Filter::__construct
+     * @covers IMT\DataGrid\Filter\Filter::getRules
      */
     public function testConstructedWithoutRules()
     {
         $this->assertInstanceOf(
             'Doctrine\Common\Collections\ArrayCollection',
-            $this->group->getRules()
+            $this->filter->getRules()
         );
-        $this->assertCount(0, $this->group->getRules());
+        $this->assertCount(0, $this->filter->getRules());
     }
 
     /**
-     * @covers IMT\DataGrid\Filter\Group::addGroup
-     * @covers IMT\DataGrid\Filter\Group::getGroups
+     * @covers IMT\DataGrid\Filter\Filter::addFilter
+     * @covers IMT\DataGrid\Filter\Filter::getFilters
      */
     public function testGetFiltersWithOneFilter()
     {
-        $returnStatement = $this->group->addGroup(clone $this->group);
+        $returnStatement = $this->filter->addFilter(clone $this->filter);
 
-        $this->assertSame($this->group, $returnStatement);
-        $this->assertCount(1, $this->group->getGroups());
+        $this->assertSame($this->filter, $returnStatement);
+        $this->assertCount(1, $this->filter->getFilters());
     }
 
     /**
-     * @covers IMT\DataGrid\Filter\Group::getGroupOp
+     * @covers IMT\DataGrid\Filter\Filter::getOperator
      */
-    public function testGetGroupOp()
+    public function testGetOperator()
     {
-        $this->assertEquals('AND', $this->group->getGroupOp());
+        $this->assertEquals('AND', $this->filter->getOperator());
     }
 
     /**
-     * @covers IMT\DataGrid\Filter\Group::addRule
-     * @covers IMT\DataGrid\Filter\Group::getRules
+     * @covers IMT\DataGrid\Filter\Filter::addRule
+     * @covers IMT\DataGrid\Filter\Filter::getRules
      */
     public function testGetRulesWithOneRule()
     {
-        $returnStatement = $this->group->addRule(
+        $returnStatement = $this->filter->addRule(
             new Rule(
                 array(
                     'field' => 'field',
@@ -124,7 +124,7 @@ class GroupTest extends \PHPUnit_Framework_TestCase
             )
         );
 
-        $this->assertSame($this->group, $returnStatement);
-        $this->assertCount(1, $this->group->getRules());
+        $this->assertSame($this->filter, $returnStatement);
+        $this->assertCount(1, $this->filter->getRules());
     }
 }

@@ -14,41 +14,41 @@ namespace IMT\DataGrid\Filter;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * The interface for the data grid filter group
+ * The interface for the data grid filter
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  */
-interface GroupInterface
+interface FilterInterface
 {
     /**
-     * Adds the given group
+     * Adds the given data grid filter
      *
-     * @param  GroupInterface $group
-     * @return GroupInterface
+     * @param  FilterInterface $filter
+     * @return FilterInterface
      */
-    public function addGroup(GroupInterface $group);
+    public function addFilter(FilterInterface $filter);
 
     /**
-     * Adds the given rule
+     * Adds the given data grid filter rule
      *
-     * @param  RuleInterface  $rule
-     * @return GroupInterface
+     * @param  RuleInterface   $rule
+     * @return FilterInterface
      */
     public function addRule(RuleInterface $rule);
+
+    /**
+     * Gets a collection of objects of type FilterInterface
+     *
+     * @return ArrayCollection
+     */
+    public function getFilters();
 
     /**
      * Gets the logical operator
      *
      * @return string
      */
-    public function getGroupOp();
-
-    /**
-     * Gets a collection of objects of type GroupInterface
-     *
-     * @return ArrayCollection
-     */
-    public function getGroups();
+    public function getOperator();
 
     /**
      * Gets a collection of objects of type RuleInterface

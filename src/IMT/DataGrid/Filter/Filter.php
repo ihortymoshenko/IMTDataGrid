@@ -20,18 +20,18 @@ use Doctrine\Common\Collections\ArrayCollection;
 use IMT\DataGrid\Exception\InvalidOptionsException;
 
 /**
- * This class represents the data grid filter group
+ * This class represents the data grid filter
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  */
-class Group implements GroupInterface
+class Filter implements FilterInterface
 {
     /**
-     * A collection of objects of type GroupInterface
+     * A collection of objects of type FilterInterface
      *
      * @var ArrayCollection
      */
-    protected $groups;
+    protected $filters;
 
     /**
      * An array of options
@@ -66,16 +66,16 @@ class Group implements GroupInterface
             throw new InvalidOptionsException($violations);
         }
 
-        $this->groups = new ArrayCollection();
-        $this->rules  = new ArrayCollection();
+        $this->filters = new ArrayCollection();
+        $this->rules   = new ArrayCollection();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function addGroup(GroupInterface $group)
+    public function addFilter(FilterInterface $filter)
     {
-        $this->groups->add($group);
+        $this->filters->add($filter);
 
         return $this;
     }
@@ -93,17 +93,17 @@ class Group implements GroupInterface
     /**
      * {@inheritDoc}
      */
-    public function getGroupOp()
+    public function getFilters()
     {
-        return $this->options['groupOp'];
+        return $this->filters;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getGroups()
+    public function getOperator()
     {
-        return $this->groups;
+        return $this->options['groupOp'];
     }
 
     /**

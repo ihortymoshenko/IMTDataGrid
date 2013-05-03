@@ -11,7 +11,7 @@
 
 namespace IMT\DataGrid\Filter\Builder;
 
-use IMT\DataGrid\Filter\Group;
+use IMT\DataGrid\Filter\Filter;
 use IMT\DataGrid\Filter\Rule;
 
 /**
@@ -26,26 +26,26 @@ class FilterBuilder implements FilterBuilderInterface
      */
     public function build(array $data)
     {
-        $group = new Group(
+        $filter = new Filter(
             array_intersect_key($data, array_flip(array('groupOp')))
         );
 
-        $groups = !array_key_exists('groups', $data)
+        $filters = !array_key_exists('groups', $data)
             ? array()
             : $data['groups'];
+
+        foreach ($filters as $data) {
+            $filter->addFilter($this->build($data));
+        }
 
         $rules = !array_key_exists('rules', $data)
             ? array()
             : $data['rules'];
 
-        foreach ($groups as $data) {
-            $group->addGroup($this->build($data));
-        }
-
         foreach ($rules as $rule) {
-            $group->addRule(new Rule($rule));
+            $filter->addRule(new Rule($rule));
         }
 
-        return $group;
+        return $filter;
     }
 }

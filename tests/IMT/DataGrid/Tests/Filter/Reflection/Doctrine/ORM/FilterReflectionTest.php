@@ -12,7 +12,7 @@
 namespace IMT\DataGrid\Tests\Filter\Reflection\Doctrine\ORM;
 
 use IMT\DataGrid\Filter\Reflection\Doctrine\ORM\FilterReflection;
-use IMT\DataGrid\Filter\Group;
+use IMT\DataGrid\Filter\Filter;
 
 /**
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
@@ -51,14 +51,14 @@ class FilterReflectionTest extends AbstractTestCase
      */
     public function testReflectWithNonExistingRuleReflection()
     {
-        $group = new Group(array('groupOp' => 'AND'));
-        $group->addRule($this->getRuleMock('non-existing op'));
+        $filter = new Filter(array('groupOp' => 'AND'));
+        $filter->addRule($this->getRuleMock('non-existing op'));
 
         $this->setExpectedException(
             'IMT\DataGrid\Filter\Reflection\Exception\ReflectionNotFoundException'
         );
 
-        $this->filterReflection->reflect($group);
+        $this->filterReflection->reflect($filter);
     }
 
     /**
@@ -66,11 +66,11 @@ class FilterReflectionTest extends AbstractTestCase
      */
     public function testReflectWithoutRules()
     {
-        $group = new Group(array('groupOp' => 'AND'));
+        $filter = new Filter(array('groupOp' => 'AND'));
 
         $this->assertEquals(
             '',
-            (string) $this->filterReflection->reflect($group)
+            (string) $this->filterReflection->reflect($filter)
         );
     }
 
@@ -79,12 +79,12 @@ class FilterReflectionTest extends AbstractTestCase
      */
     public function testReflectWithOneRule()
     {
-        $group = new Group(array('groupOp' => 'AND'));
-        $group->addRule($this->getRuleMock());
+        $filter = new Filter(array('groupOp' => 'AND'));
+        $filter->addRule($this->getRuleMock());
 
         $this->assertEquals(
             'NOT(field LIKE ?1)',
-            (string) $this->filterReflection->reflect($group)
+            (string) $this->filterReflection->reflect($filter)
         );
     }
 
@@ -93,55 +93,55 @@ class FilterReflectionTest extends AbstractTestCase
      */
     public function testReflectWithTwoRules()
     {
-        $group = new Group(array('groupOp' => 'AND'));
-        $group
+        $filter = new Filter(array('groupOp' => 'AND'));
+        $filter
             ->addRule($this->getRuleMock())
             ->addRule($this->getRuleMock('bw'));
 
         $this->assertEquals(
             'NOT(field LIKE ?1) AND field LIKE ?2',
-            (string) $this->filterReflection->reflect($group)
+            (string) $this->filterReflection->reflect($filter)
         );
     }
 
     /**
      * @covers IMT\DataGrid\Filter\Reflection\Doctrine\ORM\FilterReflection::reflect
      */
-    public function testReflectWithTwoRulesAndOneNestedGroupWithoutRules()
+    public function testReflectWithTwoRulesAndOneNestedFilterWithoutRules()
     {
-        $group = new Group(array('groupOp' => 'AND'));
-        $group
-            ->addGroup(new Group(array('groupOp' => 'AND')))
+        $filter = new Filter(array('groupOp' => 'AND'));
+        $filter
+            ->addFilter(new Filter(array('groupOp' => 'AND')))
             ->addRule($this->getRuleMock())
             ->addRule($this->getRuleMock('bw'));
 
         $this->assertEquals(
             'NOT(field LIKE ?1) AND field LIKE ?2',
-            (string) $this->filterReflection->reflect($group)
+            (string) $this->filterReflection->reflect($filter)
         );
     }
 
     /**
      * @covers IMT\DataGrid\Filter\Reflection\Doctrine\ORM\FilterReflection::reflect
      */
-    public function testReflectWithTwoRulesAndOneNestedGroupWithTwoRules()
+    public function testReflectWithTwoRulesAndOneNestedFilterWithTwoRules()
     {
-        $group = new Group(array('groupOp' => 'AND'));
-        $group
+        $filter = new Filter(array('groupOp' => 'AND'));
+        $filter
             ->addRule($this->getRuleMock())
             ->addRule($this->getRuleMock('bw'));
 
-        $nestedGroup = new Group(array('groupOp' => 'AND'));
-        $nestedGroup
+        $nestedFilter = new Filter(array('groupOp' => 'AND'));
+        $nestedFilter
             ->addRule($this->getRuleMock('cn'))
             ->addRule($this->getRuleMock('en'));
 
-        $group->addGroup($nestedGroup);
+        $filter->addFilter($nestedFilter);
 
         $this->assertEquals(
             '(NOT(field LIKE ?1) AND field LIKE ?2) AND (field LIKE ?3 AND '
             . 'NOT(field LIKE ?4))',
-            (string) $this->filterReflection->reflect($group)
+            (string) $this->filterReflection->reflect($filter)
         );
     }
 }

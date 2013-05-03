@@ -20,7 +20,7 @@ namespace IMT\DataGrid\Filter\Reflection;
 interface ReflectionInterface
 {
     /**
-     * Reflects the given grid filter
+     * Reflects the given data grid filter
      *
      * @return mixed
      */

@@ -43,14 +43,14 @@ class FilterBuilderTest extends \PHPUnit_Framework_TestCase
         $filterBuilder = new FilterBuilder();
 
         /**
-         * @var $group \IMT\DataGrid\Filter\GroupInterface
+         * @var $filter \IMT\DataGrid\Filter\FilterInterface
          */
-        $group = $filterBuilder->build($data);
+        $filter = $filterBuilder->build($data);
 
-        $this->assertInstanceOf('IMT\DataGrid\Filter\GroupInterface', $group);
-        $this->assertCount(1, $group->getGroups());
-        $this->assertCount(0, $group->getGroups()->first()->getGroups());
-        $this->assertCount(2, $group->getGroups()->first()->getRules());
-        $this->assertCount(2, $group->getRules());
+        $this->assertInstanceOf('IMT\DataGrid\Filter\FilterInterface', $filter);
+        $this->assertCount(1, $filter->getFilters());
+        $this->assertCount(0, $filter->getFilters()->first()->getFilters());
+        $this->assertCount(2, $filter->getFilters()->first()->getRules());
+        $this->assertCount(2, $filter->getRules());
     }
 }
