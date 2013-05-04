@@ -70,7 +70,7 @@ class Rule implements RuleInterface
     /**
      * {@inheritDoc}
      */
-    public function getOp()
+    public function getOperator()
     {
         return $this->options['op'];
     }

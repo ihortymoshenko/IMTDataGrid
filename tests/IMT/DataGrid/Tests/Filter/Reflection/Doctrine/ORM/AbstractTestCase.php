@@ -77,7 +77,7 @@ abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
             ->will($this->returnValue('field'));
         $rule
             ->expects($this->any())
-            ->method('getOp')
+            ->method('getOperator')
             ->will($this->returnValue($op));
 
         return $rule;

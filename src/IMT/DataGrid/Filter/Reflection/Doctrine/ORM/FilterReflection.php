@@ -59,7 +59,7 @@ class FilterReflection implements ReflectionInterface
             $ruleReflectionClass = sprintf(
                 '%s\Rule\%sRuleReflection',
                 __NAMESPACE__,
-                ucfirst($rule->getOp())
+                ucfirst($rule->getOperator())
             );
 
             if (!class_exists($ruleReflectionClass)) {

@@ -82,10 +82,10 @@ class RuleTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers IMT\DataGrid\Filter\Rule::getOp
+     * @covers IMT\DataGrid\Filter\Rule::getOperator
      */
-    public function testGetOp()
+    public function testGetOperator()
     {
-        $this->assertEquals('bn', $this->rule->getOp());
+        $this->assertEquals('bn', $this->rule->getOperator());
     }
 }

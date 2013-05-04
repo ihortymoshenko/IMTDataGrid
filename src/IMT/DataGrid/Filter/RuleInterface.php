@@ -38,5 +38,5 @@ interface RuleInterface
      *
      * @return string
      */
-    public function getOp();
+    public function getOperator();
 }
