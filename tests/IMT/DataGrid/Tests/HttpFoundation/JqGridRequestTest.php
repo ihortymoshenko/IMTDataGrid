@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the IMTDataGridBundle package.
+ * This file is part of the IMTDataGrid package.
  *
  * (c) Igor M. Timoshenko <igor.timoshenko@i.ua>
  *
