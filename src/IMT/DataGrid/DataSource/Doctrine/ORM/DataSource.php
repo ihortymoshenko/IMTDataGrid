@@ -15,7 +15,6 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 use IMT\DataGrid\DataSource\DataSourceInterface;
-use IMT\DataGrid\Filter\Builder\FilterBuilder;
 use IMT\DataGrid\Filter\Reflection\Doctrine\ORM\FilterReflection;
 use IMT\DataGrid\HttpFoundation\RequestInterface;
 
@@ -49,11 +48,9 @@ class DataSource implements DataSourceInterface
         if ($request->isSearch() && $request->getFilters()) {
             $this
                 ->queryBuilder
-                ->where(
+                ->andWhere(
                     $this->getFilterReflection()->reflect(
-                        $this->getFilterBuilder()->build(
-                            $request->getFilters()
-                        )
+                        $request->getFilters()
                     )
                 );
         }
@@ -80,14 +77,6 @@ class DataSource implements DataSourceInterface
         return new PageableResult(
             new Paginator($this->queryBuilder, $distinctResults)
         );
-    }
-
-    /**
-     * @return FilterBuilder
-     */
-    protected function getFilterBuilder()
-    {
-        return new FilterBuilder();
     }
 
     /**

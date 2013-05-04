@@ -29,6 +29,9 @@
         "doctrine/collections": "v1.0",
         "doctrine/orm": ">=2.2,<2.4-dev"
     },
+    "require-dev": {
+        "symfony/http-foundation": ">=2.0"
+    },
     "autoload": {
         "psr-0": {
             "IMT\\DataGrid": "src/"

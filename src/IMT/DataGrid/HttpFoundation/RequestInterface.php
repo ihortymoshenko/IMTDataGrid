@@ -11,6 +11,8 @@
 
 namespace IMT\DataGrid\HttpFoundation;
 
+use IMT\DataGrid\Filter\FilterInterface;
+
 /**
  * The interface for the data grid request
  *
@@ -20,10 +22,10 @@ namespace IMT\DataGrid\HttpFoundation;
 interface RequestInterface
 {
     /**
-     * Gets an array of filters
+     * Gets the filters
      *
-     * @return array Returns an empty array if there are no filters or an array
-     *               of filters
+     * @return null|FilterInterface Returns null if there are no filters or the
+     *                              filters
      */
     public function getFilters();
 
