@@ -26,7 +26,7 @@
         "php": ">=5.3.2",
         "symfony/templating": ">=2.0",
         "symfony/validator": ">=2.0",
-        "doctrine/collections": "v1.0",
+        "doctrine/collections": ">=1.0",
         "doctrine/orm": ">=2.2,<2.4-dev"
     },
     "require-dev": {
