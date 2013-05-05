@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/IgorTimoshenko/IMTDataGrid.png?branch=master)](https://travis-ci.org/IgorTimoshenko/IMTDataGrid)
 [![Coverage Status](https://coveralls.io/repos/IgorTimoshenko/IMTDataGrid/badge.png?branch=master)](https://coveralls.io/r/IgorTimoshenko/IMTDataGrid)
+[![Dependencies Status](https://d2xishtp1ojlk0.cloudfront.net/d/9434169)](http://depending.in/IgorTimoshenko/IMTDataGrid)
 
 # IMTDataGrid #
 
