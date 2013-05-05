@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/IgorTimoshenko/IMTDataGrid.png?branch=master)](https://travis-ci.org/IgorTimoshenko/IMTDataGrid)
+[![Coverage Status](https://coveralls.io/repos/IgorTimoshenko/IMTDataGrid/badge.png?branch=master)](https://coveralls.io/r/IgorTimoshenko/IMTDataGrid)
 
 # IMTDataGrid #
 
@@ -30,19 +31,15 @@ Then, you can install the new dependencies by running [Composer][1]'s update
 command from the directory where your `composer.json` file is located:
 
 ```sh
-$ composer.phar update imt/data-grid
+$ php composer.phar update imt/data-grid
 ```
 
 Now, [Composer][1] will automatically download all required files, and install
 them for you.
 
-## Usage ##
-
-...
-
 ## License ##
 
 This libray is released under the MIT license. See the complete license in the
-`LICENSE` file that was distributed with this source code.
+`LICENSE` file that is distributed with this source code.
 
 [1]: http://getcomposer.org

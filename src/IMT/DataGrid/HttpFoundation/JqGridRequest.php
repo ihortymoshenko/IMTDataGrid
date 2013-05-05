@@ -11,9 +11,9 @@
 
 namespace IMT\DataGrid\HttpFoundation;
 
-use IMT\DataGrid\Filter\Builder\FilterBuilder;
-
 use Symfony\Component\HttpFoundation\Request;
+
+use IMT\DataGrid\Filter\Builder\FilterBuilder;
 
 /**
  * This class represents the data grid request for jqGrid

@@ -30,7 +30,8 @@
         "doctrine/orm": ">=2.2,<2.4-dev"
     },
     "require-dev": {
-        "symfony/http-foundation": ">=2.0"
+        "symfony/http-foundation": ">=2.0",
+        "satooshi/php-coveralls": "v0.6.1"
     },
     "autoload": {
         "psr-0": {
