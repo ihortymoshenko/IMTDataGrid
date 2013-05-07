@@ -20,18 +20,9 @@ namespace IMT\DataGrid\View;
 interface ViewInterface
 {
     /**
-     * Gets an array of models of columns
-     *
-     * @return array
+     * @see IMT\DataGrid\DataGridInterface::getColumns()
      */
-    public function getColModel();
-
-    /**
-     * Gets an array of column names
-     *
-     * @return array
-     */
-    public function getColNames();
+    public function getColumns();
 
     /**
      * @see IMT\DataGrid\DataGridInterface::getOptions()

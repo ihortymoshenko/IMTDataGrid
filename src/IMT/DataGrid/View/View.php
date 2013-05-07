@@ -50,26 +50,9 @@ class View implements ViewInterface
     /**
      * {@inheritDoc}
      */
-    public function getColModel()
+    public function getColumns()
     {
         return $this->columns;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getColNames()
-    {
-        $colNames = array();
-
-        /**
-         * @var $column ColumnInterface
-         */
-        foreach ($this->columns as $column) {
-            $colNames[] = $column->get('label');
-        }
-
-        return $colNames;
     }
 
     /**

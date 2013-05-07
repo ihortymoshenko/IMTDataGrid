@@ -33,31 +33,16 @@ class ViewTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $this->view = new View('name', array(), $this->getColModel());
+        $this->view = new View('name', array(), $this->getColumns());
     }
 
     /**
      * @covers IMT\DataGrid\View\View::__construct
-     * @covers IMT\DataGrid\View\View::getColModel
+     * @covers IMT\DataGrid\View\View::getColumns
      */
-    public function testGetColModel()
+    public function testGetColumns()
     {
-        $this->assertEquals($this->getColModel(), $this->view->getColModel());
-    }
-
-    /**
-     * @covers IMT\DataGrid\View\View::getColNames
-     */
-    public function testGetColNames()
-    {
-        $this->assertEquals(
-            array(
-                'label1',
-                'label2',
-                'label3',
-            ),
-            $this->view->getColNames()
-        );
+        $this->assertEquals($this->getColumns(), $this->view->getColumns());
     }
 
     /**
@@ -81,7 +66,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
     /**
      * @return ArrayCollection
      */
-    public function getColModel()
+    public function getColumns()
     {
         return new ArrayCollection(
             array(
