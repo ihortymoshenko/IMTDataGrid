@@ -42,11 +42,11 @@ class FilterReflection implements ReflectionInterface
 
     /**
      * {@inheritDoc}
-     * @param  FilterInterface              $filter
+     * @param  FilterInterface             $filter
      * @return Base
-     * @throws ReflectionNotFoundException          If the data grid filter rule
-     *                                              reflection class does not
-     *                                              exist
+     * @throws ReflectionNotFoundException         If the data grid filter rule
+     *                                             reflection class does not
+     *                                             exist
      */
     public function reflect(FilterInterface $filter = null)
     {
