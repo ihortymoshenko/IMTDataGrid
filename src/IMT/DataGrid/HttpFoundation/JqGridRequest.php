@@ -13,12 +13,13 @@ namespace IMT\DataGrid\HttpFoundation;
 
 use Symfony\Component\HttpFoundation\Request;
 
-use IMT\DataGrid\Filter\Builder\FilterBuilder;
+use IMT\DataGrid\Filter\Builder\Builder;
 
 /**
  * This class represents the data grid request for jqGrid
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
+ * @link http://www.trirand.com/jqgridwiki/doku.php?id=wiki:advanced_searching
  */
 class JqGridRequest implements RequestInterface
 {
@@ -90,10 +91,12 @@ class JqGridRequest implements RequestInterface
     }
 
     /**
-     * @return FilterBuilder
+     * Gets the data grid filter builder
+     *
+     * @return Builder
      */
     protected function getFilterBuilder()
     {
-        return new FilterBuilder();
+        return new Builder();
     }
 }
