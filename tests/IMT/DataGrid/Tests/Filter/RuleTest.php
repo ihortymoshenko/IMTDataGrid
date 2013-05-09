@@ -41,26 +41,22 @@ class RuleTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers IMT\DataGrid\Filter\Rule::__construct
+     * @covers IMT\DataGrid\Filter\Rule::loadValidatorMetadata
      */
     public function testConstructedWithoutRequiredOptions()
     {
-        $this
-            ->setExpectedException(
-                'IMT\DataGrid\Exception\InvalidOptionsException'
-            );
+        $this->setExpectedException('IMT\DataGrid\Exception\InvalidOptionsException');
 
         new Rule(array());
     }
 
     /**
      * @covers IMT\DataGrid\Filter\Rule::__construct
+     * @covers IMT\DataGrid\Filter\Rule::loadValidatorMetadata
      */
-    public function testConstructedWithInvalidOptionOp()
+    public function testConstructedWithInvalidOptionOperator()
     {
-        $this
-            ->setExpectedException(
-                'IMT\DataGrid\Exception\InvalidOptionsException'
-            );
+        $this->setExpectedException('IMT\DataGrid\Exception\InvalidOptionsException');
 
         new Rule(array('field' => 'field', 'data' => 'data', 'op' => 'op'));
     }

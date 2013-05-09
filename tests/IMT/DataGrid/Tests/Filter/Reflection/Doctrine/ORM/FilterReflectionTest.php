@@ -54,9 +54,7 @@ class FilterReflectionTest extends AbstractTestCase
         $filter = new Filter(array('groupOp' => 'AND'));
         $filter->addRule($this->getRuleMock('non-existing op'));
 
-        $this->setExpectedException(
-            'IMT\DataGrid\Filter\Reflection\Exception\ReflectionNotFoundException'
-        );
+        $this->setExpectedException('IMT\DataGrid\Filter\Reflection\Exception\ReflectionNotFoundException');
 
         $this->filterReflection->reflect($filter);
     }

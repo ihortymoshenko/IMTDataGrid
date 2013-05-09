@@ -38,26 +38,22 @@ class FilterTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers IMT\DataGrid\Filter\Filter::__construct
+     * @covers IMT\DataGrid\Filter\Filter::loadValidatorMetadata
      */
     public function testConstructedWithoutRequiredOptions()
     {
-        $this
-            ->setExpectedException(
-                'IMT\DataGrid\Exception\InvalidOptionsException'
-            );
+        $this->setExpectedException('IMT\DataGrid\Exception\InvalidOptionsException');
 
         new Filter(array());
     }
 
     /**
      * @covers IMT\DataGrid\Filter\Filter::__construct
+     * @covers IMT\DataGrid\Filter\Filter::loadValidatorMetadata
      */
-    public function testConstructedWithInvalidOptionOp()
+    public function testConstructedWithInvalidOptionOperator()
     {
-        $this
-            ->setExpectedException(
-                'IMT\DataGrid\Exception\InvalidOptionsException'
-            );
+        $this->setExpectedException('IMT\DataGrid\Exception\InvalidOptionsException');
 
         new Filter(array('groupOp' => 'groupOp'));
     }

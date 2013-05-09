@@ -20,15 +20,32 @@ class ColumnTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @covers IMT\DataGrid\Column\Column::__construct
+     * @covers IMT\DataGrid\Column\Column::loadValidatorMetadata
      */
     public function testConstructedWithoutRequiredOptions()
     {
-        $this
-            ->setExpectedException(
-                'IMT\DataGrid\Exception\InvalidOptionsException'
-            );
+        $this->setExpectedException('IMT\DataGrid\Exception\InvalidOptionsException');
 
-        new Column(array());
+        $this->getColumn(array());
+    }
+
+    /**
+     * @covers IMT\DataGrid\Column\Column::__construct
+     * @covers IMT\DataGrid\Column\Column::loadValidatorMetadata
+     * @covers IMT\DataGrid\Column\Column::toArray
+     */
+    public function testConstructedWithExtraOptions()
+    {
+        $options = array(
+            'index'  => 'index',
+            'label'  => 'label',
+            'name'   => 'name',
+            'option' => 'option',
+        );
+
+        $column = $this->getColumn($options);
+
+        $this->assertSame($options, $column->toArray());
     }
 
     /**
@@ -74,16 +91,14 @@ class ColumnTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param  array  $options
      * @return Column
      */
-    private function getColumn()
-    {
-        return new Column(
-            array(
-                'index' => 'index',
-                'label' => 'label',
-                'name'  => 'name',
-            )
-        );
+    private function getColumn(array $options = array(
+        'index' => 'index',
+        'label' => 'label',
+        'name'  => 'name'
+    )) {
+        return new Column($options);
     }
 }
