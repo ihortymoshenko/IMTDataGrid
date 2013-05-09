@@ -11,12 +11,14 @@
 
 namespace IMT\DataGrid;
 
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Templating\EngineInterface;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
 use IMT\DataGrid\Column\ColumnInterface;
 use IMT\DataGrid\DataSource\DataSourceInterface;
+use IMT\DataGrid\Event\BindRequestEvent;
 use IMT\DataGrid\Exception\DataSourceNotSetException;
 
 /**
@@ -37,6 +39,11 @@ class DataGrid implements DataGridInterface
      * @var DataSourceInterface
      */
     protected $dataSource;
+
+    /**
+     * @var EventDispatcherInterface
+     */
+    protected $eventDispatcher;
 
     /**
      * The data grid name
@@ -60,11 +67,15 @@ class DataGrid implements DataGridInterface
     /**
      * The constructor method
      *
-     * @param EngineInterface $templating
+     * @param EventDispatcherInterface $eventDispatcher
+     * @param EngineInterface          $templating
      */
-    public function __construct(EngineInterface $templating)
-    {
-        $this->templating = $templating;
+    public function __construct(
+        EventDispatcherInterface $eventDispatcher,
+        EngineInterface $templating
+    ) {
+        $this->eventDispatcher = $eventDispatcher;
+        $this->templating      = $templating;
 
         $this->columns = new ArrayCollection();
     }
@@ -88,7 +99,18 @@ class DataGrid implements DataGridInterface
             throw new DataSourceNotSetException();
         }
 
-        $this->dataSource->bindRequest($request);
+        $event = new BindRequestEvent($this, $request);
+        $this->eventDispatcher->dispatch(
+            DataGridEvents::PRE_BIND_REQUEST,
+            $event
+        );
+
+        $this->dataSource->bindRequest($event->getRequest());
+
+        $this->eventDispatcher->dispatch(
+            DataGridEvents::POST_BIND_REQUEST,
+            new BindRequestEvent($this, $event->getRequest())
+        );
 
         return $this;
     }
@@ -161,6 +183,14 @@ class DataGrid implements DataGridInterface
         }
 
         return $data;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDataSource()
+    {
+        return $this->dataSource;
     }
 
     /**

@@ -72,6 +72,13 @@ interface DataGridInterface
     public function getData($distinctResults = true);
 
     /**
+     * Gets the data source
+     *
+     * @return DataSourceInterface
+     */
+    public function getDataSource();
+
+    /**
      * Gets the data grid name
      *
      * @return string
@@ -86,7 +93,7 @@ interface DataGridInterface
     public function getOptions();
 
     /**
-     * Sets the data source
+     * Sets the given data source
      *
      * @param  DataSourceInterface $dataSource
      * @return DataGridInterface

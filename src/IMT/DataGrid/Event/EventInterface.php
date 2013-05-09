@@ -9,23 +9,22 @@
  * file that was distributed with this source code.
  */
 
-namespace IMT\DataGrid\Filter\Builder;
+namespace IMT\DataGrid\Event;
 
-use IMT\DataGrid\Filter\FilterInterface;
+use IMT\DataGrid\DataGridInterface;
 
 /**
- * The interface for the data grid filter builder
+ * The interface for the data grid event
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore
  */
-interface FilterBuilderInterface
+interface EventInterface
 {
     /**
-     * Builds the data grid filter by the given array of data
+     * Gets the data grid
      *
-     * @param  array           $data An array of data
-     * @return FilterInterface
+     * @return DataGridInterface
      */
-    public function build(array $data);
+    public function getDataGrid();
 }

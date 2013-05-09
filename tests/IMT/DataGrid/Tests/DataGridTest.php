@@ -13,6 +13,7 @@ namespace IMT\DataGrid\Tests;
 
 use IMT\DataGrid\Column\Column;
 use IMT\DataGrid\DataGrid;
+use IMT\DataGrid\DataGridEvents;
 use IMT\DataGrid\DataGridInterface;
 
 /**
@@ -32,10 +33,16 @@ class DataGridTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
+        $eventDispatcher = $this
+            ->getMock('Symfony\Component\EventDispatcher\EventDispatcherInterface');
+
         $templating = $this
             ->getMock('Symfony\Component\Templating\EngineInterface');
 
-        $this->dataGrid = new DataGrid($templating);
+        $this->dataGrid = new DataGrid(
+            $eventDispatcher,
+            $templating
+        );
     }
 
     /**
