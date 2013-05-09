@@ -13,8 +13,6 @@ namespace IMT\DataGrid\View;
 
 use Doctrine\Common\Collections\ArrayCollection;
 
-use IMT\DataGrid\Column\ColumnInterface;
-
 /**
  * This class represents the data grid view
  *
