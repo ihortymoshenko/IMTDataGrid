@@ -15,6 +15,7 @@ namespace IMT\DataGrid;
  * This class serves to define and document events
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
+ * @codeCoverageIgnore
  */
 final class DataGridEvents
 {
