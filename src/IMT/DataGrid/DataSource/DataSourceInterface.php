@@ -11,6 +11,7 @@
 
 namespace IMT\DataGrid\DataSource;
 
+use IMT\DataGrid\Filter\Reflection\ReflectionInterface;
 use IMT\DataGrid\HttpFoundation\RequestInterface;
 
 /**
@@ -28,6 +29,13 @@ interface DataSourceInterface
      * @return DataSourceInterface
      */
     public function bindRequest(RequestInterface $request);
+
+    /**
+     * Gets the filter reflection
+     *
+     * @return ReflectionInterface
+     */
+    public function getFilterReflection();
 
     /**
      * Gets the pageable result

@@ -130,6 +130,17 @@ class DataSourceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers IMT\DataGrid\DataSource\Doctrine\ORM\DataSource::getFilterReflection
+     */
+    public function testGetFilterReflection()
+    {
+        $this->assertInstanceOf(
+            'IMT\DataGrid\Filter\Reflection\ReflectionInterface',
+            $this->dataSource->getFilterReflection()
+        );
+    }
+
+    /**
      * @covers IMT\DataGrid\DataSource\Doctrine\ORM\DataSource::getPageableResult
      */
     public function testGetPageableResult()

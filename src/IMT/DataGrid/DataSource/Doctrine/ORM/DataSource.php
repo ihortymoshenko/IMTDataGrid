@@ -72,18 +72,18 @@ class DataSource implements DataSourceInterface
     /**
      * {@inheritDoc}
      */
+    public function getFilterReflection()
+    {
+        return new FilterReflection($this->queryBuilder);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getPageableResult($distinctResults = true)
     {
         return new PageableResult(
             new Paginator($this->queryBuilder, $distinctResults)
         );
-    }
-
-    /**
-     * @return FilterReflection
-     */
-    protected function getFilterReflection()
-    {
-        return new FilterReflection($this->queryBuilder);
     }
 }
