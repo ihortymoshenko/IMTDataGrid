@@ -35,6 +35,24 @@ class AbstractBuilderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers IMT\DataGrid\Builder\AbstractBuilder::createDataGrid
+     * @covers IMT\DataGrid\Builder\AbstractBuilder::getDataGrid
+     */
+    public function testCreateAndGetDataGrid()
+    {
+        $this
+            ->abstractBuilder
+            ->setEventDispatcher($this->getEventDispatcherMock())
+            ->setTemplating($this->getTemplatingMock())
+            ->createDataGrid();
+
+        $this->assertInstanceOf(
+            'IMT\DataGrid\DataGridInterface',
+            $this->abstractBuilder->getDataGrid()
+        );
+    }
+
+    /**
      * @covers IMT\DataGrid\Builder\AbstractBuilder::setEventDispatcher
      */
     public function testSetEventDispatcher()
@@ -65,24 +83,6 @@ class AbstractBuilderTest extends \PHPUnit_Framework_TestCase
             'Symfony\Component\Templating\EngineInterface',
             'templating',
             $this->abstractBuilder
-        );
-    }
-
-    /**
-     * @covers IMT\DataGrid\Builder\AbstractBuilder::createDataGrid
-     * @covers IMT\DataGrid\Builder\AbstractBuilder::getDataGrid
-     */
-    public function testCreateAndGetDataGrid()
-    {
-        $this
-            ->abstractBuilder
-            ->setEventDispatcher($this->getEventDispatcherMock())
-            ->setTemplating($this->getTemplatingMock())
-            ->createDataGrid();
-
-        $this->assertInstanceOf(
-            'IMT\DataGrid\DataGridInterface',
-            $this->abstractBuilder->getDataGrid()
         );
     }
 
