@@ -33,6 +33,9 @@
         "symfony/http-foundation": ">=2.0",
         "satooshi/php-coveralls": "v0.6.1"
     },
+    "suggest": {
+        "imt/data-grid-bundle": "to allow integration into Symfony2"
+    },
     "autoload": {
         "psr-0": {
             "IMT\\DataGrid": "src/"
