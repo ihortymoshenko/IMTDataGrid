@@ -19,6 +19,21 @@ use IMT\DataGrid\Filter\Builder\Builder;
 class FilterBuilderTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @var Builder
+     */
+    private $builder;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->builder = new Builder();
+    }
+
+    /**
      * @covers IMT\DataGrid\Filter\Builder\Builder::build
      */
     public function testBuild()
@@ -40,17 +55,18 @@ class FilterBuilderTest extends \PHPUnit_Framework_TestCase
         );
         $data['groups'][] = $data;
 
-        $builder = new Builder();
-
         /**
          * @var $filter \IMT\DataGrid\Filter\FilterInterface
          */
-        $filter = $builder->build($data);
+        $filter = $this->builder->build($data);
 
         $this->assertInstanceOf('IMT\DataGrid\Filter\FilterInterface', $filter);
-        $this->assertCount(1, $filter->getFilters());
-        $this->assertCount(0, $filter->getFilters()->first()->getFilters());
-        $this->assertCount(2, $filter->getFilters()->first()->getRules());
         $this->assertCount(2, $filter->getRules());
+
+        $nestedFilters = $filter->getFilters();
+
+        $this->assertCount(1, $nestedFilters);
+        $this->assertCount(0, $nestedFilters[0]->getFilters());
+        $this->assertCount(2, $nestedFilters[0]->getRules());
     }
 }

@@ -11,8 +11,6 @@
 
 namespace IMT\DataGrid\Tests\Filter;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
 use IMT\DataGrid\Filter\Filter;
 use IMT\DataGrid\Filter\Rule;
 
@@ -51,7 +49,7 @@ class FilterTest extends \PHPUnit_Framework_TestCase
      * @covers IMT\DataGrid\Filter\Filter::__construct
      * @covers IMT\DataGrid\Filter\Filter::loadValidatorMetadata
      */
-    public function testConstructedWithInvalidOptionOperator()
+    public function testConstructedWithInvalidOperator()
     {
         $this->setExpectedException('IMT\DataGrid\Exception\InvalidOptionsException');
 
@@ -64,10 +62,6 @@ class FilterTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructedWithoutFilters()
     {
-        $this->assertInstanceOf(
-            'Doctrine\Common\Collections\ArrayCollection',
-            $this->filter->getFilters()
-        );
         $this->assertCount(0, $this->filter->getFilters());
     }
 
@@ -77,10 +71,6 @@ class FilterTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructedWithoutRules()
     {
-        $this->assertInstanceOf(
-            'Doctrine\Common\Collections\ArrayCollection',
-            $this->filter->getRules()
-        );
         $this->assertCount(0, $this->filter->getRules());
     }
 

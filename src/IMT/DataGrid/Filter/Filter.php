@@ -15,8 +15,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Validation;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
 use IMT\DataGrid\Exception\InvalidOptionsException;
 
 /**
@@ -27,11 +25,11 @@ use IMT\DataGrid\Exception\InvalidOptionsException;
 class Filter implements FilterInterface
 {
     /**
-     * A collection of objects of type FilterInterface
+     * An array of objects of type FilterInterface
      *
-     * @var ArrayCollection
+     * @var FilterInterface[]
      */
-    protected $filters;
+    protected $filters = array();
 
     /**
      * An array of options
@@ -41,11 +39,11 @@ class Filter implements FilterInterface
     protected $options = array();
 
     /**
-     * A collection of objects of type RuleInterface
+     * An array of objects of type RuleInterface
      *
-     * @var ArrayCollection
+     * @var RuleInterface[]
      */
-    protected $rules;
+    protected $rules = array();
 
     /**
      * The constructor method
@@ -65,9 +63,6 @@ class Filter implements FilterInterface
         if (count($violations) > 0) {
             throw new InvalidOptionsException($violations);
         }
-
-        $this->filters = new ArrayCollection();
-        $this->rules   = new ArrayCollection();
     }
 
     /**
@@ -75,7 +70,7 @@ class Filter implements FilterInterface
      */
     public function addFilter(FilterInterface $filter)
     {
-        $this->filters->add($filter);
+        $this->filters[] = $filter;
 
         return $this;
     }
@@ -85,7 +80,7 @@ class Filter implements FilterInterface
      */
     public function addRule(RuleInterface $rule)
     {
-        $this->rules->add($rule);
+        $this->rules[] = $rule;
 
         return $this;
     }

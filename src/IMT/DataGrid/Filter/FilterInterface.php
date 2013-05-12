@@ -11,8 +11,6 @@
 
 namespace IMT\DataGrid\Filter;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
 /**
  * The interface for the data grid filter
  *
@@ -37,9 +35,9 @@ interface FilterInterface
     public function addRule(RuleInterface $rule);
 
     /**
-     * Gets a collection of objects of type FilterInterface
+     * Gets an array of objects of type FilterInterface
      *
-     * @return ArrayCollection
+     * @return FilterInterface[]
      */
     public function getFilters();
 
@@ -51,9 +49,9 @@ interface FilterInterface
     public function getOperator();
 
     /**
-     * Gets a collection of objects of type RuleInterface
+     * Gets an array of objects of type RuleInterface
      *
-     * @return ArrayCollection
+     * @return RuleInterface[]
      */
     public function getRules();
 }
