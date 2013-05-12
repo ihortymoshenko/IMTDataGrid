@@ -11,7 +11,7 @@
 
 namespace IMT\DataGrid\View;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use IMT\DataGrid\Column\ColumnCollectionInterface;
 
 /**
  * This class represents the data grid view
@@ -38,8 +38,11 @@ class View implements ViewInterface
     /**
      * The constructor method
      */
-    public function __construct($name, array $options, ArrayCollection $columns)
-    {
+    public function __construct(
+        $name,
+        array $options,
+        ColumnCollectionInterface $columns
+    ) {
         $this->name    = $name;
         $this->options = $options;
         $this->columns = $columns;

@@ -11,8 +11,7 @@
 
 namespace IMT\DataGrid;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
+use IMT\DataGrid\Column\ColumnCollectionInterface;
 use IMT\DataGrid\Column\ColumnInterface;
 use IMT\DataGrid\DataSource\DataSourceInterface;
 use IMT\DataGrid\Exception\DataSourceNotSetException;
@@ -36,6 +35,18 @@ interface DataGridInterface
     public function addColumn(ColumnInterface $column);
 
     /**
+     * Adds the given column at the specified position. Shifts the column
+     * currently at that position (if any) and any subsequent columns to the
+     * right (adds one to their indices)
+     *
+     * @param  ColumnInterface   $column
+     * @param  integer           $index  The index at which the given column is
+     *                                   to be added
+     * @return DataGridInterface
+     */
+    public function addColumnAt(ColumnInterface $column, $index);
+
+    /**
      * Binds the given request
      *
      * @param  RequestInterface          $request
@@ -52,9 +63,9 @@ interface DataGridInterface
     public function createView();
 
     /**
-     * Gets a collection of objects of type ColumnInterface
+     * Gets a collection of objects of type ColumnCollectionInterface
      *
-     * @return ArrayCollection
+     * @return ColumnCollectionInterface
      */
     public function getColumns();
 

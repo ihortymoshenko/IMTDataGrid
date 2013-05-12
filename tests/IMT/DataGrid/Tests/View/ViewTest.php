@@ -14,6 +14,7 @@ namespace IMT\DataGrid\Tests\View;
 use Doctrine\Common\Collections\ArrayCollection;
 
 use IMT\DataGrid\Column\Column;
+use IMT\DataGrid\Column\ColumnCollection;
 use IMT\DataGrid\View\View;
 
 /**
@@ -68,29 +69,24 @@ class ViewTest extends \PHPUnit_Framework_TestCase
      */
     public function getColumns()
     {
-        return new ArrayCollection(
+        $columnCollection = new ColumnCollection();
+        $columnCollection->add($this->getColumn());
+        $columnCollection->add($this->getColumn());
+        $columnCollection->add($this->getColumn());
+
+        return $columnCollection;
+    }
+
+    /**
+     * @return Column
+     */
+    private function getColumn()
+    {
+        return new Column(
             array(
-                new Column(
-                    array(
-                        'index' => 'index1',
-                        'label' => 'label1',
-                        'name'  => 'name1',
-                    )
-                ),
-                new Column(
-                    array(
-                        'index' => 'index2',
-                        'label' => 'label2',
-                        'name'  => 'name2',
-                    )
-                ),
-                new Column(
-                    array(
-                        'index' => 'index3',
-                        'label' => 'label3',
-                        'name'  => 'name3',
-                    )
-                ),
+                'index' => 'index',
+                'label' => 'label',
+                'name'  => 'name',
             )
         );
     }

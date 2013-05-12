@@ -14,8 +14,7 @@ namespace IMT\DataGrid;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Templating\EngineInterface;
 
-use Doctrine\Common\Collections\ArrayCollection;
-
+use IMT\DataGrid\Column\ColumnCollection;
 use IMT\DataGrid\Column\ColumnInterface;
 use IMT\DataGrid\DataSource\DataSourceInterface;
 use IMT\DataGrid\Event\BindRequestEvent;
@@ -31,7 +30,7 @@ class DataGrid implements DataGridInterface
     /**
      * A collection of objects of type ColumnInterface
      *
-     * @var ArrayCollection
+     * @var ColumnCollection
      */
     protected $columns;
 
@@ -77,7 +76,7 @@ class DataGrid implements DataGridInterface
         $this->eventDispatcher = $eventDispatcher;
         $this->templating      = $templating;
 
-        $this->columns = new ArrayCollection();
+        $this->columns = new ColumnCollection();
     }
 
     /**
@@ -85,7 +84,17 @@ class DataGrid implements DataGridInterface
      */
     public function addColumn(ColumnInterface $column)
     {
-        $this->columns->set($column->get('name'), $column);
+        $this->columns->add($column);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addColumnAt(ColumnInterface $column, $index)
+    {
+        $this->columns->addAt($column, $index);
 
         return $this;
     }
@@ -151,18 +160,22 @@ class DataGrid implements DataGridInterface
             'total'   => $pageableResult->getTotalPagesCount(),
         );
 
-        foreach ($pageableResult as $id => $row) {
-            $keys = array_keys(
-                array_intersect_key(
-                    array_flip($this->columns->getKeys()),
-                    $row
-                )
-            );
+        $keys = array();
 
+        /**
+         * @var $column ColumnInterface
+         */
+        foreach ($this->columns as $column) {
+            if (array_key_exists(
+                    $column->get('name'),
+                    $pageableResult->getIterator()->current()
+                )) {
+                $keys[] = $column->get('name');
+            }
+        }
+
+        foreach ($pageableResult as $id => $row) {
             foreach ($keys as $key) {
-                /**
-                 * @var $column ColumnInterface
-                 */
                 $column = $this->columns->get($key);
 
                 if ($column->has('template')) {
