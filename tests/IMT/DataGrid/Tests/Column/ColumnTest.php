@@ -34,7 +34,7 @@ class ColumnTest extends \PHPUnit_Framework_TestCase
      * @covers IMT\DataGrid\Column\Column::loadValidatorMetadata
      * @covers IMT\DataGrid\Column\Column::toArray
      */
-    public function testConstructedWithExtraOptions()
+    public function testConstructedWithExtraOption()
     {
         $options = array(
             'index'  => 'index',
@@ -71,23 +71,6 @@ class ColumnTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($column->has('index'));
         $this->assertTrue($column->has('label'));
         $this->assertTrue($column->has('name'));
-    }
-
-    /**
-     * @covers IMT\DataGrid\Column\Column::toArray
-     */
-    public function testToArray()
-    {
-        $column = $this->getColumn();
-
-        $this->assertEquals(
-            array(
-                'index' => 'index',
-                'label' => 'label',
-                'name'  => 'name',
-            ),
-            $column->toArray()
-        );
     }
 
     /**
