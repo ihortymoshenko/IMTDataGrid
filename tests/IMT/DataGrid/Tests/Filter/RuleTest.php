@@ -54,7 +54,7 @@ class RuleTest extends \PHPUnit_Framework_TestCase
      * @covers IMT\DataGrid\Filter\Rule::__construct
      * @covers IMT\DataGrid\Filter\Rule::loadValidatorMetadata
      */
-    public function testConstructedWithInvalidOptionOperator()
+    public function testConstructedWithInvalidOperator()
     {
         $this->setExpectedException('IMT\DataGrid\Exception\InvalidOptionsException');
 
