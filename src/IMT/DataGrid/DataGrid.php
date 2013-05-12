@@ -175,8 +175,8 @@ class DataGrid implements DataGridInterface
         }
 
         foreach ($pageableResult as $id => $row) {
-            foreach ($keys as $key) {
-                $column = $this->columns->get($key);
+            foreach ($keys as $index => $key) {
+                $column = $this->columns->get($index);
 
                 if ($column->has('template')) {
                     $row[$key] = $this->templating->render(
