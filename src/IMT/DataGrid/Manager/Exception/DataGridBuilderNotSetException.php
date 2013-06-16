@@ -11,6 +11,8 @@
 
 namespace IMT\DataGrid\Manager\Exception;
 
+use IMT\DataGrid\Exception\RuntimeException;
+
 /**
  * This class represents the exception that is thrown when the data grid builder
  * is not set
@@ -18,7 +20,7 @@ namespace IMT\DataGrid\Manager\Exception;
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore
  */
-class DataGridBuilderNotSetException extends \RuntimeException
+class DataGridBuilderNotSetException extends RuntimeException
 {
     /**
      * {@inheritDoc}

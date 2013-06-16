@@ -18,6 +18,6 @@ namespace IMT\DataGrid\Exception;
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore
  */
-class InvalidOptionsException extends \InvalidArgumentException
+class InvalidOptionsException extends InvalidArgumentException
 {
 }

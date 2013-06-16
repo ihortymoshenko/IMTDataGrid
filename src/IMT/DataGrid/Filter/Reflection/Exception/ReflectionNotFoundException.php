@@ -11,6 +11,8 @@
 
 namespace IMT\DataGrid\Filter\Reflection\Exception;
 
+use IMT\DataGrid\Exception\RuntimeException;
+
 /**
  * This class represents the exception that is thrown when the requested data
  * grid filter reflection was not found
@@ -18,6 +20,6 @@ namespace IMT\DataGrid\Filter\Reflection\Exception;
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore
  */
-class ReflectionNotFoundException extends \RuntimeException
+class ReflectionNotFoundException extends RuntimeException
 {
 }

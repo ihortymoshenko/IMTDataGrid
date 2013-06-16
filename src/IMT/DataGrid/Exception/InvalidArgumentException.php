@@ -12,19 +12,12 @@
 namespace IMT\DataGrid\Exception;
 
 /**
- * This class represents the exception that is thrown when the data source is
- * not set
+ * This class represents the exception that is thrown if an argument does not
+ * match with the expected value
  *
  * @author Igor Timoshenko <igor.timoshenko@i.ua>
  * @codeCoverageIgnore
  */
-class DataSourceNotSetException extends RuntimeException
+class InvalidArgumentException extends \InvalidArgumentException implements ExceptionInterface
 {
-    /**
-     * {@inheritDoc}
-     */
-    public function __construct()
-    {
-        parent::__construct('The data source is not set.');
-    }
 }
