@@ -319,7 +319,7 @@ server and with the ability to search is very easy.
 
 ## License ##
 
-This libray is released under the MIT license. See the complete license in the
+This library is released under the MIT license. See the complete license in the
 `LICENSE` file that is distributed with this source code.
 
 [1]: http://github.com/tonytomov/jqGrid
