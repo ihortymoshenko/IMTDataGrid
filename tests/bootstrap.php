@@ -25,4 +25,4 @@ if ((!$loader = includeIfExists(__DIR__ . '/../vendor/autoload.php'))
     exit(1);
 }
 
-$loader->add('IMT\DataGrid\Tests\\', __DIR__);
+$loader->addPsr4('IMT\\DataGrid\\', __DIR__);

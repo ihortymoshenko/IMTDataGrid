@@ -40,8 +40,8 @@
         "imt/data-grid-bundle": "to allow integration into Symfony2"
     },
     "autoload": {
-        "psr-0": {
-            "IMT\\DataGrid": "src/"
+        "psr-4": {
+            "IMT\\DataGrid\\": "src/"
         }
     },
     "minimum-stability": "dev",
