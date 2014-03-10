@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/IgorTimoshenko/IMTDataGrid.png?branch=master)](https://travis-ci.org/IgorTimoshenko/IMTDataGrid)
 [![Coverage Status](https://coveralls.io/repos/IgorTimoshenko/IMTDataGrid/badge.png?branch=master)](https://coveralls.io/r/IgorTimoshenko/IMTDataGrid)
-[![Dependencies Status](https://d2xishtp1ojlk0.cloudfront.net/d/9434169)](http://depending.in/IgorTimoshenko/IMTDataGrid)
+[![Dependencies Status](https://depending.in/IgorTimoshenko/IMTDataGrid.png)](http://depending.in/IgorTimoshenko/IMTDataGrid)
 
 # IMTDataGrid #
 
@@ -34,22 +34,22 @@ To install `IMTDataGrid` with [Composer][2] just add the following to your
 }
 ```
 
-Then, you can install the new dependencies by running [Composer][2]'s update
-command from the directory where your `composer.json` file is located:
+Then, you can install the new dependencies by running Composer's update command
+from the directory where your `composer.json` file is located:
 
 ```sh
 $ php composer.phar update imt/data-grid
 ```
 
-Now, [Composer][2] will automatically download all required files, and install
-them for you.
+Now, Composer will automatically download all required files, and install them
+for you.
 
 ## Usage ##
 
 Suppose you are building a simple blog and you need to have the grid on the
 back-end, which will display information about the posts.
 
-> It is further assumed that you are going to use the [jqGrid][1] library for
+> It is further assumed that you are going to use the jqGrid library for
 > rendering grids on the client-side, as well as [Doctrine ORM][3] as the data
 > source.
 
@@ -174,8 +174,8 @@ class PostBuilder extends AbstractBuilder
 > three are required. You can also pass more options, if necessary. For
 > instance, if needed pass them to the library on the client-side.
 
-All that is left to do is to get the grid manager in the contoller and build the
-grid using by the grid builder:
+All that is left to do is to get the grid manager in the controller and build
+the grid using by the grid builder:
 
 ```php
 <?php
@@ -317,6 +317,21 @@ That is all. You should see on the client-side the grid with information about
 the posts. As you can see, to create the grid that is bound with data on the
 server and with the ability to search is very easy.
 
+## Testing ##
+
+```sh
+$ make test
+```
+
+## Contributing ##
+
+Please see [CONTRIBUTING][4] for details.
+
+## Credits
+
+- [Igor Timoshenko][5]
+- [All Contributors][6]
+
 ## License ##
 
 This library is released under the MIT license. See the complete license in the
@@ -325,3 +340,6 @@ This library is released under the MIT license. See the complete license in the
 [1]: http://github.com/tonytomov/jqGrid
 [2]: http://getcomposer.org
 [3]: http://github.com/doctrine/doctrine2
+[4]: https://github.com/IgorTimoshenko/IMTDataGrid/blob/master/CONTRIBUTING.md
+[5]: https://github.com/IgorTimoshenko
+[6]: https://github.com/IgorTimoshenko/IMTDataGrid/graphs/contributors
