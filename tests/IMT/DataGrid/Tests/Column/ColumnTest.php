@@ -77,11 +77,13 @@ class ColumnTest extends \PHPUnit_Framework_TestCase
      * @param  array  $options
      * @return Column
      */
-    private function getColumn(array $options = array(
+    private function getColumn(
+        array $options = array(
         'index' => 'index',
         'label' => 'label',
         'name'  => 'name'
-    )) {
+        )
+    ) {
         return new Column($options);
     }
 }

@@ -167,9 +167,10 @@ class DataGrid implements DataGridInterface
          */
         foreach ($this->columns as $column) {
             if (array_key_exists(
-                    $column->get('name'),
-                    $pageableResult->getIterator()->current()
-                )) {
+                $column->get('name'),
+                $pageableResult->getIterator()->current()
+            )
+            ) {
                 $keys[] = $column->get('name');
             }
         }
