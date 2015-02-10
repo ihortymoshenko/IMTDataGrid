@@ -24,13 +24,9 @@ To install `IMTDataGrid` with [Composer][2] just add the following to your
 
 ```json
 {
-    // ...
     "require": {
-        // ...
         "imt/data-grid": "0.9.*"
-        // ...
     }
-    // ...
 }
 ```
 
